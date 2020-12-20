@@ -16,7 +16,7 @@ namespace Gisha.Glide.Plane
             _transform = transform;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             ForwardFollowing();
         }
