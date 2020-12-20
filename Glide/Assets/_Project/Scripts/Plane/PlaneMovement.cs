@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Gisha.Glide
+namespace Gisha.Glide.Plane
 {
     public class PlaneMovement : MonoBehaviour
     {
