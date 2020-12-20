@@ -6,15 +6,13 @@ namespace Gisha.Glide.Plane
     {
         [Header("Speeds")]
         [SerializeField] private float forwardSpeed = 25f;
-        [SerializeField] private float strafeSpeed = 7.5f;
-        [SerializeField] private float hoverSpeed = 5f;
+        [SerializeField] private float rollSpeed = 5;
 
-        float _nowForwardSpeed, _nowStrafeSpeed, _nowHoverSpeed;
+        float _nowForwardSpeed, _nowRollSpeed;
 
         [Header("Accelerations")]
         [SerializeField] private float forwardAcceleration = 2.5f;
-        [SerializeField] private float strafeAcceleration = 2f;
-        [SerializeField] private float hoverAcceleration = 2f;
+        [SerializeField] private float rollAcceleration = 2.5f;
 
         [Header("Look Rotation")]
         [SerializeField] private float lookRotateSpeed = 90f;
@@ -44,37 +42,26 @@ namespace Gisha.Glide.Plane
             GetMouseDistFromCenter();
             RotatePlane();
 
-            GetMovementSpeeds();
-            UpdateVelocity();
+            ForwardVelocity();
         }
 
-        void UpdateVelocity()
+        void ForwardVelocity()
         {
-            var rightVel = transform.right * _nowStrafeSpeed * Time.deltaTime;
-            var upVel = transform.up * _nowHoverSpeed * Time.deltaTime;
-            var forwardVel = transform.forward * _nowForwardSpeed * Time.deltaTime;
-            _velocity = rightVel + upVel + forwardVel;
+            _nowForwardSpeed = Mathf.Lerp(_nowForwardSpeed, forwardSpeed, Time.deltaTime * forwardAcceleration);
 
+            _velocity = transform.forward * _nowForwardSpeed * Time.deltaTime;
             _rb.position += _velocity;
-        }
-
-        void GetMovementSpeeds()
-        {
-            var newForwardSpeed = forwardSpeed;
-            _nowForwardSpeed = Mathf.Lerp(_nowForwardSpeed, newForwardSpeed, Time.deltaTime * forwardAcceleration);
-
-            var newStrafeSpeed = Input.GetAxisRaw("Horizontal") * strafeSpeed;
-            _nowStrafeSpeed = Mathf.Lerp(_nowStrafeSpeed, newStrafeSpeed, Time.deltaTime * strafeAcceleration);
-
-            var newHoverSpeed = Input.GetAxisRaw("Hover") * hoverSpeed;
-            _nowHoverSpeed = Mathf.Lerp(_nowHoverSpeed, newHoverSpeed, Time.deltaTime * hoverAcceleration);
         }
 
         void RotatePlane()
         {
             var xAngle = -mouseDist.y * lookRotateSpeed * Time.deltaTime;
             var yAngle = mouseDist.x * lookRotateSpeed * Time.deltaTime;
-            _transform.Rotate(xAngle, yAngle, 0f, Space.Self);
+
+            _nowRollSpeed = Mathf.Lerp(_nowRollSpeed, -Input.GetAxisRaw("Horizontal") * rollSpeed, Time.deltaTime * rollAcceleration);
+            var zAngle = _nowRollSpeed * Time.deltaTime;
+
+            _transform.Rotate(xAngle, yAngle, zAngle, Space.Self);
         }
 
         private void GetMouseDistFromCenter()
