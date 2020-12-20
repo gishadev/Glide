@@ -7,7 +7,7 @@ namespace Gisha.Glide.Plane
         [Header("Following Settings")]
         [SerializeField] private Transform followTarget = default;
         [SerializeField] private float followSpeed = default;
-        [SerializeField] private float zOffset = default;
+        [SerializeField] private Vector3 followOffset = default;
 
         Transform _transform;
 
@@ -18,13 +18,13 @@ namespace Gisha.Glide.Plane
 
         private void FixedUpdate()
         {
-            ForwardFollowing();
+            Following();
         }
 
-        void ForwardFollowing()
+        void Following()
         {
             var oldPos = _transform.position;
-            var newPos = new Vector3(oldPos.x, oldPos.y, followTarget.position.z) + zOffset * Vector3.forward; 
+            var newPos = new Vector3(followTarget.position.x, followTarget.position.y, followTarget.position.z) + followOffset; 
 
             _transform.position = Vector3.Lerp(oldPos, newPos, followSpeed * Time.deltaTime);
         }
