@@ -4,43 +4,51 @@ namespace Gisha.Glide.Plane
 {
     public class PlaneMovement : MonoBehaviour
     {
-        [Header("Speeds")]
+        [Header("Speed")]
         [SerializeField] private float forwardSpeed = 25f;
-        [SerializeField] private float rollSpeed = 5;
-
-        float _nowForwardSpeed, _nowRollSpeed;
-
-        [Header("Accelerations")]
+        [Header("Acceleration")]
         [SerializeField] private float forwardAcceleration = 2.5f;
-        [SerializeField] private float rollAcceleration = 2.5f;
 
-        [Header("Look Rotation")]
-        [SerializeField] private float lookRotateSpeed = 90f;
+        float _nowForwardSpeed;
 
-        Vector2 lookInput, screenCenter, mouseDist;
+        [Header("Rotation")]
+        [SerializeField] private float rotationSpeed = default;
+        [SerializeField] private float rotationSens = default;
+        [SerializeField] private float aimDistResetSpeed = default;
+        [SerializeField] private Transform mouseAimTrans = default;
+        [SerializeField] private Transform planeForwardTrans = default;
 
+        [SerializeField] private Transform planeForwardPosition = default;
+
+        Vector2 _lookDelta, _mouseDist, _screenCenter;
         Vector3 _velocity;
+
         Rigidbody _rb;
         Transform _transform;
+        Camera _cam;
 
         private void Awake()
         {
             _transform = transform;
-             _rb = GetComponent<Rigidbody>();
+            _rb = GetComponent<Rigidbody>();
+            _cam = Camera.main;
         }
 
         private void Start()
         {
-            screenCenter.x = Screen.width / 2f;
-            screenCenter.y = Screen.height / 2f;
+            _screenCenter.x = Screen.width / 2f;
+            _screenCenter.y = Screen.height / 2f;
 
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void FixedUpdate()
         {
-            GetMouseDistFromCenter();
+            GetMouseDistance();
+            UpdateCanvasTransform();
+
             RotatePlane();
+            ResetMouseDistance();
 
             ForwardVelocity();
         }
@@ -53,26 +61,31 @@ namespace Gisha.Glide.Plane
             _rb.position += _velocity;
         }
 
-        void RotatePlane()
+        void GetMouseDistance()
         {
-            var xAngle = -mouseDist.y * lookRotateSpeed * Time.deltaTime;
-            var yAngle = mouseDist.x * lookRotateSpeed * Time.deltaTime;
+            _lookDelta.x = Input.GetAxis("Mouse X") * rotationSpeed;
+            _lookDelta.y = Input.GetAxis("Mouse Y") * rotationSpeed;
 
-            _nowRollSpeed = Mathf.Lerp(_nowRollSpeed, -Input.GetAxisRaw("Horizontal") * rollSpeed, Time.deltaTime * rollAcceleration);
-            var zAngle = _nowRollSpeed * Time.deltaTime;
-
-            _transform.Rotate(xAngle, yAngle, zAngle, Space.Self);
+            _mouseDist += _lookDelta;
         }
 
-        private void GetMouseDistFromCenter()
+        void ResetMouseDistance()
         {
-            lookInput.x = Input.mousePosition.x;
-            lookInput.y = Input.mousePosition.y;
+            _mouseDist = Vector2.Lerp(_mouseDist, Vector2.zero, aimDistResetSpeed * Time.deltaTime);
+        }
 
-            mouseDist.x = (lookInput.x - screenCenter.x) / screenCenter.y;
-            mouseDist.y = (lookInput.y - screenCenter.y) / screenCenter.y;
+        void UpdateCanvasTransform()
+        {
+            mouseAimTrans.position = _screenCenter + _mouseDist * rotationSens;
+            planeForwardTrans.position = _cam.WorldToScreenPoint(planeForwardPosition.position);
+        }
 
-            mouseDist = Vector2.ClampMagnitude(mouseDist, 1f);
+        void RotatePlane()
+        {
+            var xAngle = -_mouseDist.y * Time.deltaTime;
+            var yAngle = _mouseDist.x * Time.deltaTime;
+
+            _transform.Rotate(xAngle, yAngle, 0f, Space.World);
         }
     }
 }
