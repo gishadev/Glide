@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Gisha.Glide.Airplane
+namespace Gisha.Glide.AirplaneGeneric
 {
     [RequireComponent(typeof(Rigidbody))]
     public class AirplaneMovement : MonoBehaviour

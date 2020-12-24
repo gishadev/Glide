@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Gisha.Glide.Airplane
+namespace Gisha.Glide.AirplaneGeneric
 {
     public class FlightHUD : MonoBehaviour
     {
