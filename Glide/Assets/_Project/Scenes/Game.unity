@@ -1707,7 +1707,7 @@ GameObject:
   - component: {fileID: 1352095280}
   m_Layer: 0
   m_Name: Airplane
-  m_TagString: Untagged
+  m_TagString: Airplane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1928,7 +1928,7 @@ GameObject:
   - component: {fileID: 1571953228}
   m_Layer: 0
   m_Name: Trails
-  m_TagString: Untagged
+  m_TagString: Airplane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2030,7 +2030,7 @@ GameObject:
   - component: {fileID: 1624767429}
   m_Layer: 0
   m_Name: Model
-  m_TagString: Untagged
+  m_TagString: Airplane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
