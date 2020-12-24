@@ -1234,7 +1234,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.25, z: -16}
+  m_LocalPosition: {x: 0, y: 4.5, z: -19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 42456563}
@@ -1696,9 +1696,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 181363869}
-  thrust: 550
+  thrust: 350
   turnTorque: {x: 90, y: 25, z: 45}
-  forceMult: 20
+  forceMult: 40
   sensitivity: 5
   aggressiveTurnAngle: 5
   pitch: 0
