@@ -9,34 +9,41 @@ namespace Gisha.Glide.AirplaneGeneric
         [SerializeField] private MouseFlightController controller = null;
 
         [Header("Physics")]
-        [Tooltip("Force to push plane forwards with")] public float thrust = 100f;
-        [Tooltip("Pitch, Yaw, Roll")] public Vector3 turnTorque = new Vector3(90f, 25f, 45f);
-        [Tooltip("Multiplier for all forces")] public float forceMult = 1000f;
+        [SerializeField] private float defaultThrust = 100f;
+        [SerializeField] private float boostedThrust = 200f;
+        [SerializeField] private float boostAcceleration = 2f;
+        [Space]
+        [SerializeField] [Tooltip("Pitch, Yaw, Roll")] public Vector3 turnTorque = new Vector3(90f, 25f, 45f);
+        [SerializeField] [Tooltip("Multiplier for all forces")] public float forceMult = 1000f;
 
         [Header("Autopilot")]
-        [Tooltip("Sensitivity for autopilot flight.")] public float sensitivity = 5f;
-        [Tooltip("Angle at which airplane banks fully into target.")] public float aggressiveTurnAngle = 10f;
+        [SerializeField] [Tooltip("Sensitivity for autopilot flight")] public float sensitivity = 5f;
+        [SerializeField] [Tooltip("Angle at which airplane banks fully into target")] public float aggressiveTurnAngle = 10f;
 
         [Header("Input")]
+        [SerializeField] private float thrust = 0f;
         [SerializeField] [Range(-1f, 1f)] private float pitch = 0f;
         [SerializeField] [Range(-1f, 1f)] private float yaw = 0f;
         [SerializeField] [Range(-1f, 1f)] private float roll = 0f;
 
-        public float Pitch { set { pitch = Mathf.Clamp(value, -1f, 1f); } get { return pitch; } }
-        public float Yaw { set { yaw = Mathf.Clamp(value, -1f, 1f); } get { return yaw; } }
-        public float Roll { set { roll = Mathf.Clamp(value, -1f, 1f); } get { return roll; } }
+        public float Thrust { get => thrust; private set => thrust = Mathf.Max(value, defaultThrust); }
+        public float Pitch { get => pitch; private set => pitch = Mathf.Clamp(value, -1f, 1f); }
+        public float Yaw { get => yaw; private set => yaw = Mathf.Clamp(value, -1f, 1f); }
+        public float Roll { get => roll; private set => roll = Mathf.Clamp(value, -1f, 1f); }
 
-        private Rigidbody rigid;
+        bool _rollOverride = false;
+        bool _pitchOverride = false;
 
-        private bool rollOverride = false;
-        private bool pitchOverride = false;
+        Rigidbody _rb;
+        Airplane _airplane;
 
         private void Awake()
         {
-            rigid = GetComponent<Rigidbody>();
+            _rb = GetComponent<Rigidbody>();
+            _airplane = GetComponent<Airplane>();
 
             if (controller == null)
-                Debug.LogError(name + ": Plane - Missing reference to MouseFlightController!");
+                Debug.LogError($"{name}: Plane - Missing reference to MouseFlightController!");
 
             Cursor.lockState = CursorLockMode.Locked;
         }
@@ -45,20 +52,20 @@ namespace Gisha.Glide.AirplaneGeneric
         {
             // When the player commands their own stick input, it should override what the
             // autopilot is trying to do.
-            rollOverride = false;
-            pitchOverride = false;
+            _rollOverride = false;
+            _pitchOverride = false;
 
             float keyboardRoll = Input.GetAxis("Horizontal");
             if (Mathf.Abs(keyboardRoll) > .25f)
             {
-                rollOverride = true;
+                _rollOverride = true;
             }
 
             float keyboardPitch = Input.GetAxis("Vertical");
             if (Mathf.Abs(keyboardPitch) > .25f)
             {
-                pitchOverride = true;
-                rollOverride = true;
+                _pitchOverride = true;
+                _rollOverride = true;
             }
 
             // Calculate the autopilot stick inputs.
@@ -69,31 +76,23 @@ namespace Gisha.Glide.AirplaneGeneric
                 RunAutopilot(controller.MouseAimPos, out autoYaw, out autoPitch, out autoRoll);
 
             // Use either keyboard or autopilot input.
-            yaw = autoYaw;
-            pitch = (pitchOverride) ? keyboardPitch : autoPitch;
-            roll = (rollOverride) ? keyboardRoll : autoRoll;
+            Yaw = autoYaw;
+            Pitch = (_pitchOverride) ? keyboardPitch : autoPitch;
+            Roll = (_rollOverride) ? keyboardRoll : autoRoll;
+
+            var aimThrust = _airplane.IsBoostedSpeed ? boostedThrust : defaultThrust;
+            Thrust = Mathf.Lerp(Thrust, aimThrust, Time.deltaTime * boostAcceleration);
         }
 
         private void RunAutopilot(Vector3 flyTarget, out float yaw, out float pitch, out float roll)
         {
-            // This is my usual trick of converting the fly to position to local space.
-            // You can derive a lot of information from where the target is relative to self.
             var localFlyTarget = transform.InverseTransformPoint(flyTarget).normalized * sensitivity;
             var angleOffTarget = Vector3.Angle(transform.forward, flyTarget - transform.position);
-
-            // IMPORTANT!
-            // These inputs are created proportionally. This means it can be prone to
-            // overshooting. The physics in this example are tweaked so that it's not a big
-            // issue, but in something with different or more realistic physics this might
-            // not be the case. Use of a PID controller for each axis is highly recommended.
 
             // ====================
             // PITCH AND YAW
             // ====================
 
-            // Yaw/Pitch into the target so as to put it directly in front of the aircraft.
-            // A target is directly in front the aircraft if the relative X and Y are both
-            // zero. Note this does not handle for the case where the target is directly behind.
             yaw = Mathf.Clamp(localFlyTarget.x, -1f, 1f);
             pitch = -Mathf.Clamp(localFlyTarget.y, -1f, 1f);
 
@@ -101,32 +100,19 @@ namespace Gisha.Glide.AirplaneGeneric
             // ROLL
             // ====================
 
-            // Roll is a little special because there are two different roll commands depending
-            // on the situation. When the target is off axis, then the plane should roll into it.
-            // When the target is directly in front, the plane should fly wings level.
-
-            // An "aggressive roll" is input such that the aircraft rolls into the target so
-            // that pitching up (handled above) will put the nose onto the target. This is
-            // done by rolling such that the X component of the target's position is zeroed.
             var agressiveRoll = Mathf.Clamp(localFlyTarget.x, -1f, 1f);
-
-            // A "wings level roll" is a roll commands the aircraft to fly wings level.
-            // This can be done by zeroing out the Y component of the aircraft's right.
             var wingsLevelRoll = transform.right.y;
 
-            // Blend between auto level and banking into the target.
             var wingsLevelInfluence = Mathf.InverseLerp(0f, aggressiveTurnAngle, angleOffTarget);
             roll = Mathf.Lerp(wingsLevelRoll, agressiveRoll, wingsLevelInfluence);
         }
 
         private void FixedUpdate()
         {
-            // Ultra simple flight where the plane just gets pushed forward and manipulated
-            // with torques to turn.
-            rigid.AddRelativeForce(Vector3.forward * thrust * forceMult, ForceMode.Force);
-            rigid.AddRelativeTorque(new Vector3(turnTorque.x * pitch,
-                                                turnTorque.y * yaw,
-                                                -turnTorque.z * roll) * forceMult,
+            _rb.AddRelativeForce(Vector3.forward * Thrust * forceMult, ForceMode.Force);
+            _rb.AddRelativeTorque(new Vector3(turnTorque.x * Pitch,
+                                                turnTorque.y * Yaw,
+                                                -turnTorque.z * Roll) * forceMult,
                                     ForceMode.Force);
         }
     }

@@ -2310,9 +2310,29 @@ PrefabInstance:
       propertyPath: controller
       value: 
       objectReference: {fileID: 181363869}
+    - target: {fileID: 4220699834052348182, guid: 9d61260d5566573439c5ee763d3eefc1, type: 3}
+      propertyPath: defaultThrust
+      value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 4220699834052348182, guid: 9d61260d5566573439c5ee763d3eefc1, type: 3}
+      propertyPath: boostedThrust
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 4220699834052348182, guid: 9d61260d5566573439c5ee763d3eefc1, type: 3}
+      propertyPath: boostAcceleration
+      value: 125
+      objectReference: {fileID: 0}
     - target: {fileID: 4220699834052348183, guid: 9d61260d5566573439c5ee763d3eefc1, type: 3}
       propertyPath: fullWasteOfEnergyInSeconds
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4220699834052348183, guid: 9d61260d5566573439c5ee763d3eefc1, type: 3}
+      propertyPath: defaultWasteOfEnergyInSeconds
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4220699834052348183, guid: 9d61260d5566573439c5ee763d3eefc1, type: 3}
+      propertyPath: boostedWasteOfEnergyInSeconds
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d61260d5566573439c5ee763d3eefc1, type: 3}

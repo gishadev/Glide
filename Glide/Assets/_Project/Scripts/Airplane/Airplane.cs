@@ -5,7 +5,11 @@ namespace Gisha.Glide.AirplaneGeneric
 {
     public class Airplane : MonoBehaviour
     {
-        [SerializeField] private float fullWasteOfEnergyInSeconds = default;
+        [Header("Values")]
+        [SerializeField] private float defaultWasteOfEnergyInSeconds = 15f;
+        [SerializeField] private float boostedWasteOfEnergyInSeconds = 10f;
+
+        public bool IsBoostedSpeed { get; private set; } = false;
 
         public float Energy
         {
@@ -18,10 +22,19 @@ namespace Gisha.Glide.AirplaneGeneric
 
         private void Update()
         {
-            if (IsCharged)
-                Energy -= Time.deltaTime / (fullWasteOfEnergyInSeconds + 0.001f);
-            else
+            if (!IsCharged)
+            {
                 Die();
+                return;
+            }
+
+            var wasteOfEnergy = IsBoostedSpeed ? boostedWasteOfEnergyInSeconds : defaultWasteOfEnergyInSeconds;
+            Energy -= Time.deltaTime / (wasteOfEnergy + 0.001f);
+
+            if (Input.GetKey(KeyCode.LeftControl))
+                IsBoostedSpeed = true;
+            else
+                IsBoostedSpeed = false;
         }
 
         public void Die()
