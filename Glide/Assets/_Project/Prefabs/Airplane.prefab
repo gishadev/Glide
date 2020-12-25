@@ -95,7 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b96b5500ccf3d8f4aad19752f941c2db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullWasteOfEnergyInSeconds: 10
+  defaultWasteOfEnergyInSeconds: 15
+  boostedWasteOfEnergyInSeconds: 8
 --- !u!114 &4220699834052348182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,11 +110,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
-  thrust: 350
+  defaultThrust: 450
+  boostedThrust: 800
+  boostAcceleration: 125
   turnTorque: {x: 90, y: 25, z: 45}
   forceMult: 40
   sensitivity: 5
   aggressiveTurnAngle: 7
+  thrust: 350
   pitch: 0
   yaw: 0
   roll: 0
