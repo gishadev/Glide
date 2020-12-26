@@ -239,7 +239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameSceneName: Game
   levelScenesNames:
-  - Level
+  - Level 3
   - Level 1
   - Level 2
 --- !u!4 &287899923

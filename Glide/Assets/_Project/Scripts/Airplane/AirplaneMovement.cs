@@ -33,19 +33,32 @@ namespace Gisha.Glide.AirplaneGeneric
 
         bool _rollOverride = false;
         bool _pitchOverride = false;
+        bool _freeFallMode = false;
+
+        float _startDrag;
+        float _startAngularDrag;
+        float _startMass;
 
         Rigidbody _rb;
         Airplane _airplane;
 
         private void Awake()
         {
-            _rb = GetComponent<Rigidbody>();
-            _airplane = GetComponent<Airplane>();
-
             if (controller == null)
                 Debug.LogError($"{name}: Plane - Missing reference to MouseFlightController!");
 
+            _rb = GetComponent<Rigidbody>();
+            _airplane = GetComponent<Airplane>();
+
+            GetRigidbodyParams();
+            _airplane.OnCharge += ChangeModeOnCharge;
+
             Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        private void OnDisable()
+        {
+            _airplane.OnCharge -= ChangeModeOnCharge;
         }
 
         private void Update()
@@ -84,6 +97,18 @@ namespace Gisha.Glide.AirplaneGeneric
             Thrust = Mathf.Lerp(Thrust, aimThrust, Time.deltaTime * boostAcceleration);
         }
 
+        private void FixedUpdate()
+        {
+            if (!_freeFallMode)
+            {
+                _rb.AddRelativeForce(Vector3.forward * Thrust * forceMult, ForceMode.Force);
+                _rb.AddRelativeTorque(new Vector3(turnTorque.x * Pitch,
+                                                    turnTorque.y * Yaw,
+                                                    -turnTorque.z * Roll) * forceMult,
+                                        ForceMode.Force);
+            }
+        }
+
         private void RunAutopilot(Vector3 flyTarget, out float yaw, out float pitch, out float roll)
         {
             var localFlyTarget = transform.InverseTransformPoint(flyTarget).normalized * sensitivity;
@@ -107,13 +132,32 @@ namespace Gisha.Glide.AirplaneGeneric
             roll = Mathf.Lerp(wingsLevelRoll, agressiveRoll, wingsLevelInfluence);
         }
 
-        private void FixedUpdate()
+        private void GetRigidbodyParams()
         {
-            _rb.AddRelativeForce(Vector3.forward * Thrust * forceMult, ForceMode.Force);
-            _rb.AddRelativeTorque(new Vector3(turnTorque.x * Pitch,
-                                                turnTorque.y * Yaw,
-                                                -turnTorque.z * Roll) * forceMult,
-                                    ForceMode.Force);
+            _startAngularDrag = _rb.angularDrag;
+            _startDrag = _rb.drag;
+            _startMass = _rb.mass;
+        }
+
+        private void ChangeModeOnCharge(bool status)
+        {
+            _freeFallMode = !status;
+            _rb.useGravity = !status;
+
+            // If plane was charged.
+            if (status)
+            {
+                _rb.drag = _startDrag;
+                _rb.angularDrag = _startAngularDrag;
+                _rb.mass = _startMass;
+            }
+            // If plane was discharged.
+            else
+            {
+                _rb.drag = 0.05f;
+                _rb.angularDrag = 0.05f;
+                _rb.mass *= 1000f;
+            }
         }
     }
 }
