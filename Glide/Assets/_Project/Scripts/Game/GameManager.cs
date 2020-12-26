@@ -10,22 +10,24 @@ namespace Gisha.Glide.Game
         public static GameManager Instance { get; private set; }
         #endregion
 
-        public const string relativePath = "_Project/Scenes";
+        [SerializeField] private string gameSceneName = default;
+        [SerializeField] private string[] levelScenesNames = default;
 
-        public string gameScene;
-        public string[] levelScenes;
+        public static int CurrentLevelIndex = 0;
+
+        public const string relativePath = "_Project/Scenes";
 
         private void Awake()
         {
             CreateInstance();
 
-            if (gameScene == null) Debug.LogError("You haven't selected gameScene!");
-            if (levelScenes == null || levelScenes.Length == 0) Debug.LogError("You haven't selected any levelScene!");
+            if (gameSceneName == null) Debug.LogError("You haven't selected Game Scene!");
+            if (levelScenesNames == null || levelScenesNames.Length == 0) Debug.LogError("You haven't selected any Level Scene!");
         }
 
         private void Start()
         {
-            ReloadScene();
+            ReloadLevel();
         }
 
         private void CreateInstance()
@@ -43,10 +45,20 @@ namespace Gisha.Glide.Game
 
         private static void LoadLevel(int index)
         {
-            SceneManager.LoadScene(GetPathToScene(Instance.gameScene));
-            SceneManager.LoadScene(GetPathToScene(Instance.levelScenes[index]), LoadSceneMode.Additive);
+            SceneManager.LoadScene(GetPathToScene(Instance.gameSceneName));
+            SceneManager.LoadScene(GetPathToScene(Instance.levelScenesNames[index]), LoadSceneMode.Additive);
         }
 
-        public static void ReloadScene() => LoadLevel(0);
+        public static void LoadNextLevel()
+        {
+            if (CurrentLevelIndex + 1 < Instance.levelScenesNames.Length)
+                CurrentLevelIndex++;
+            else
+                CurrentLevelIndex = 0;
+
+            LoadLevel(CurrentLevelIndex);
+        }
+
+        public static void ReloadLevel() => LoadLevel(CurrentLevelIndex);
     }
 }
