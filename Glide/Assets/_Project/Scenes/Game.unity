@@ -239,9 +239,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameSceneName: Game
   levelScenesNames:
-  - Level 3
+  - Level
   - Level 1
   - Level 2
+  - Level 3
 --- !u!4 &287899923
 Transform:
   m_ObjectHideFlags: 0
@@ -1290,6 +1291,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1178502959031465809, guid: 9d61260d5566573439c5ee763d3eefc1, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178502959031465809, guid: 9d61260d5566573439c5ee763d3eefc1, type: 3}
+      propertyPath: m_Parameters.colorGradient.atime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178502959031465809, guid: 9d61260d5566573439c5ee763d3eefc1, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.a
+      value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 1178502959031465809, guid: 9d61260d5566573439c5ee763d3eefc1, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.a
+      value: 0.29411766
+      objectReference: {fileID: 0}
     - target: {fileID: 4220699834052348169, guid: 9d61260d5566573439c5ee763d3eefc1, type: 3}
       propertyPath: m_Name
       value: Airplane
