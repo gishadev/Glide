@@ -27,19 +27,12 @@ namespace Gisha.Glide.AirplaneGeneric
 
         public bool InEnoughEnergy => Energy > 0;
 
-        private void Awake()
-        {
-            OnCharge += ActivateTrails;
-        }
+        private void OnEnable() => OnCharge += OnChargeAirplane;
+        private void OnDisable() => OnCharge -= OnChargeAirplane;
 
         private void Start()
         {
             ChargeUp();
-        }
-
-        private void OnDisable()
-        {
-            OnCharge -= ActivateTrails;
         }
 
         private void Update()
@@ -56,7 +49,7 @@ namespace Gisha.Glide.AirplaneGeneric
             Energy -= Time.deltaTime / (wasteOfEnergy + 0.001f);
 
             if (!InEnoughEnergy)
-                OnCharge(false);
+                Discharge();
         }
 
         public void Die()
@@ -65,14 +58,14 @@ namespace Gisha.Glide.AirplaneGeneric
             GameManager.ReloadLevel();
         }
 
-        public void ChargeUp()
-        {
-            Energy = 1f;
-            OnCharge(true);
-        }
+        public void ChargeUp() => OnCharge(true);
+        public void Discharge() => OnCharge(false);
 
-        private void ActivateTrails(bool status)
+        public void OnChargeAirplane(bool status)
         {
+            Energy = status ? 1f : 0f;
+
+            // Activate/Deactivate trails.
             foreach (var trail in engineTrails)
                 trail.enabled = status;
         }

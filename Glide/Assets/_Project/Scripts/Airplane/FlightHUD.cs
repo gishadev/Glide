@@ -47,9 +47,6 @@ namespace Gisha.Glide.AirplaneGeneric
             }
         }
 
-        public void SetReferenceMouseFlight(MouseFlightController controller)
-        {
-            mouseFlight = controller;
-        }
+        public void SetReferenceMouseFlight(MouseFlightController controller) => mouseFlight = controller;
     }
 }
