@@ -237,12 +237,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d5d2c886d8c59544b4bd6c9ba2e6b2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainRelativePath: _Project/Scenes
+  levelsRelativePath: _Project/Scenes/Levels
   gameSceneName: Game
   levelScenesNames:
-  - Level
   - Level 1
   - Level 2
   - Level 3
+  - Level 4
+  Spawnpoint: {fileID: 0}
 --- !u!4 &287899923
 Transform:
   m_ObjectHideFlags: 0
@@ -256,6 +259,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &292153004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 292153006}
+  - component: {fileID: 292153005}
+  m_Layer: 0
+  m_Name: Airplane Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &292153005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292153004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c75f3e07dda9b424f902c12139c0b21d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  airplaneTransform: {fileID: 1352095284}
+--- !u!4 &292153006
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292153004}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &292935111
 GameObject:

@@ -10,12 +10,18 @@ namespace Gisha.Glide.Game
         public static GameManager Instance { get; private set; }
         #endregion
 
+        [Header("Pathes")]
+        [SerializeField] private string mainRelativePath = "_Project/Scenes";
+        [SerializeField] private string levelsRelativePath = "_Project/Scenes/Levels";
+
+        [Header("Scenes Names")]
         [SerializeField] private string gameSceneName = default;
         [SerializeField] private string[] levelScenesNames = default;
 
-        public static int CurrentLevelIndex = 0;
+        [Header("Game")]
+        public Spawnpoint Spawnpoint;
 
-        public const string relativePath = "_Project/Scenes";
+        public static int CurrentLevelIndex = 0;
 
         private void Awake()
         {
@@ -41,12 +47,14 @@ namespace Gisha.Glide.Game
                 Destroy(gameObject);
         }
 
-        private static string GetPathToScene(string sceneName) => $"{relativePath}/{sceneName}";
+        private static string GetPathToScene(string relativePath, string sceneName) => $"{relativePath}/{sceneName}";
 
         private static void LoadLevel(int index)
         {
-            SceneManager.LoadScene(GetPathToScene(Instance.gameSceneName));
-            SceneManager.LoadScene(GetPathToScene(Instance.levelScenesNames[index]), LoadSceneMode.Additive);
+            SceneManager.LoadScene(
+                GetPathToScene(Instance.mainRelativePath, Instance.gameSceneName));
+            SceneManager.LoadScene(
+                GetPathToScene(Instance.levelsRelativePath, Instance.levelScenesNames[index]), LoadSceneMode.Additive);
         }
 
         public static void LoadNextLevel()
