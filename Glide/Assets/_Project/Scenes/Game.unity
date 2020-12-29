@@ -245,6 +245,7 @@ MonoBehaviour:
   - Level 2
   - Level 3
   - Level 4
+  - Level 5
   Spawnpoint: {fileID: 0}
 --- !u!4 &287899923
 Transform:
