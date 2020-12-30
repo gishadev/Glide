@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
+using Gisha.Glide.Level;
+using Gisha.Glide.AirplaneGeneric;
 
 namespace Gisha.Glide.Game
 {
@@ -18,17 +20,16 @@ namespace Gisha.Glide.Game
         [SerializeField] private string gameSceneName = default;
         [SerializeField] private string[] levelScenesNames = default;
 
-        [Header("Game")]
-        public Spawnpoint Spawnpoint;
-
         public static int CurrentLevelIndex = 0;
 
         private void Awake()
         {
             CreateInstance();
 
-            if (gameSceneName == null) Debug.LogError("You haven't selected Game Scene!");
-            if (levelScenesNames == null || levelScenesNames.Length == 0) Debug.LogError("You haven't selected any Level Scene!");
+            if (gameSceneName == null)
+                Debug.LogError("You haven't selected Game Scene!");
+            if (levelScenesNames == null || levelScenesNames.Length == 0) 
+                Debug.LogError("You haven't selected any Level Scene!");
         }
 
         private void Start()

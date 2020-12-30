@@ -246,7 +246,6 @@ MonoBehaviour:
   - Level 3
   - Level 4
   - Level 5
-  Spawnpoint: {fileID: 0}
 --- !u!4 &287899923
 Transform:
   m_ObjectHideFlags: 0
@@ -290,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c75f3e07dda9b424f902c12139c0b21d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  airplaneTransform: {fileID: 1352095284}
+  airplane: {fileID: 558118765}
 --- !u!4 &292153006
 Transform:
   m_ObjectHideFlags: 0
@@ -455,6 +454,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403465578}
   m_CullTransparentMesh: 0
+--- !u!1 &558118765 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4220699834052348169, guid: 9d61260d5566573439c5ee763d3eefc1, type: 3}
+  m_PrefabInstance: {fileID: 4220699835401690918}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &686196818
 GameObject:
   m_ObjectHideFlags: 0
@@ -834,7 +838,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4220699834052348183, guid: 9d61260d5566573439c5ee763d3eefc1, type: 3}
   m_PrefabInstance: {fileID: 4220699835401690918}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 558118765}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b96b5500ccf3d8f4aad19752f941c2db, type: 3}

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3854411909064532955}
   - component: {fileID: 1340217247444195089}
   - component: {fileID: 3435969759674148436}
-  - component: {fileID: 7696063047751140433}
   m_Layer: 0
   m_Name: Disabled Teleporter
   m_TagString: Obstacle
@@ -98,15 +97,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1272970811673996786, guid: 8f9cb788a8958d34fad1a15507d26a5e, type: 3}
---- !u!114 &7696063047751140433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 691746798874457796}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc2213c91fae57d4c9bfe712d13a5663, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -1,41 +1,26 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using Gisha.Glide.Level;
+using UnityEngine;
 
 namespace Gisha.Glide.AirplaneGeneric
 {
     public class AirplaneSpawner : MonoBehaviour
     {
-        #region Singleton
-        public static AirplaneSpawner Instance { get; private set; }
-        #endregion
-
-        [SerializeField] private Transform airplaneTransform = default;
+        [SerializeField] private GameObject airplane = default;
 
         private void Awake()
         {
-            Instance = this;
-
-            if (airplaneTransform == null) Debug.LogError("Airplane Transform is missing!");
-            else ActivateAirplane(false);
+            if (airplane == null)
+                Debug.LogError("airplaneTransform is not assigned!");
+            else
+                ActivateAirplane(false);
         }
 
         private void Start()
         {
-            SetPositionToSpawnpoint();
+            airplane.transform.position = LevelManager.Instance.Spawnpoint.transform.position;
             ActivateAirplane(true);
         }
 
-        private void SetPositionToSpawnpoint()
-        {
-            if (Spawnpoint.Instance == null)
-                return;
-
-            airplaneTransform.position = Spawnpoint.Instance.Position;
-        }
-
-        private void ActivateAirplane(bool status)
-        {
-            airplaneTransform.gameObject.SetActive(status);
-        }
+        private void ActivateAirplane(bool status) => airplane.SetActive(status);
     }
 }
