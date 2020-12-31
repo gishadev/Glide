@@ -7,16 +7,17 @@ namespace Gisha.Glide.Objects
         [Header("Triggerable Object Settings")]
         [SerializeField] private TriggerSignal triggerSignal = default;
 
-        private void OnEnable()
-        {
-            triggerSignal.OnTriggerSignal += OnTriggerSignal;
-        }
+        public bool IsTriggered { get; private set; } = false;
 
-        private void OnDisable()
-        {
-            triggerSignal.OnTriggerSignal -= OnTriggerSignal;
-        }
+        private void OnEnable() => triggerSignal.OnTriggerSignal += Trigger;
+        private void OnDisable() => triggerSignal.OnTriggerSignal -= Trigger;
 
         public abstract void OnTriggerSignal(Collider other);
+
+        private void Trigger(Collider other)
+        {
+            IsTriggered = true;
+            OnTriggerSignal(other);
+        }
     }
 }

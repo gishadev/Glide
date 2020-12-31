@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerSignal: {fileID: 1439975203727893006}
+  minDistToRotatateTowardsAirplane: 100
 --- !u!1 &8953410200287664959
 GameObject:
   m_ObjectHideFlags: 0

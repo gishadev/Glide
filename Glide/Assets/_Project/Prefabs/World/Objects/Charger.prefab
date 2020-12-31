@@ -223,3 +223,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerSignal: {fileID: 8241510250769885020}
   chargingGate: {fileID: 2154003863872609901}
+  minDistToRotatateTowardsAirplane: 100
