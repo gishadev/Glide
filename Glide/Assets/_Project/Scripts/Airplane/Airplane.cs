@@ -12,7 +12,7 @@ namespace Gisha.Glide.AirplaneGeneric
         [SerializeField] private float boostedWasteOfEnergyInSeconds = 10f;
 
         [Header("Visual")]
-        [SerializeField] private TrailRenderer[] engineTrails = default;
+        [SerializeField] private GameObject[] engineVisualObjects = default;
 
         public event Action<bool> OnCharge;
 
@@ -66,8 +66,8 @@ namespace Gisha.Glide.AirplaneGeneric
             Energy = status ? 1f : 0f;
 
             // Activate/Deactivate trails.
-            foreach (var trail in engineTrails)
-                trail.enabled = status;
+            foreach (var obj in engineVisualObjects)
+                obj.SetActive(status);
         }
 
         private void OnCollisionEnter(Collision collision)
