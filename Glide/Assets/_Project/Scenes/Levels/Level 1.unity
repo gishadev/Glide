@@ -484,8 +484,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Disabled Teleporter
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7696063047751140433, guid: 3f60c2f7bdb276e428a148273e1b8d5e, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f60c2f7bdb276e428a148273e1b8d5e, type: 3}
 --- !u!4 &930130176 stripped
 Transform:
