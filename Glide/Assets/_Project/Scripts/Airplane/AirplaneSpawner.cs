@@ -23,9 +23,9 @@ namespace Gisha.Glide.AirplaneGeneric
                 ActivateAirplane(false);
         }
 
-        private void Start()
+        public void SpawnAirplane(Vector3 position)
         {
-            airplane.transform.position = LevelManager.Instance.Spawnpoint.transform.position;
+            airplane.transform.position = position;
             ActivateAirplane(true);
         }
 

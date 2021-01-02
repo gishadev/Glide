@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gisha.Glide.AirplaneGeneric;
+using UnityEngine;
 
 namespace Gisha.Glide.Level
 {
@@ -25,6 +26,11 @@ namespace Gisha.Glide.Level
                 Debug.LogError("Spawnpoint is not assigned!");
             if (tunnelParent == null)
                 Debug.LogError("Tunnel Parent is not assigned!");
+        }
+
+        private void Start()
+        {
+            AirplaneSpawner.Instance.SpawnAirplane(Spawnpoint.position);
         }
 
         private void OnValidate()
