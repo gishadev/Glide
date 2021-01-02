@@ -47,7 +47,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
     min: 0
---- !u!114 &-4757146419418787045
+--- !u!114 &-2580700752357730856
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,13 +63,13 @@ MonoBehaviour:
   m_AdvancedMode: 0
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: -0.5073651}
+    m_Value: {x: 1, y: 1, z: 1, w: -0.39279866}
   midtones:
     m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: -0.114566274}
+    m_Value: {x: 1, y: 1, z: 1, w: 0}
   highlights:
     m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: -1}
+    m_Value: {x: 1, y: 1, z: 1, w: 0}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
   components:
   - {fileID: -6259413826024424951}
   - {fileID: 6409322862451602358}
-  - {fileID: -4757146419418787045}
+  - {fileID: -2580700752357730856}
 --- !u!114 &6409322862451602358
 MonoBehaviour:
   m_ObjectHideFlags: 3

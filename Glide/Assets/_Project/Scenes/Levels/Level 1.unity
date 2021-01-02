@@ -1549,7 +1549,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3919224647054793000, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.38268343
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3919224647054793000, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1561,7 +1561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3919224647054793000, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92387956
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3919224647054793000, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
       propertyPath: m_RootOrder
@@ -1569,7 +1569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3919224647054793000, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3919224647054793000, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -1591,9 +1591,41 @@ PrefabInstance:
       propertyPath: m_BoundingSphereOverride.w
       value: 3.0920607e-18
       objectReference: {fileID: 0}
+    - target: {fileID: 3919224647054793001, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3919224647054793001, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3919224647054793001, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3919224647054793001, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3919224647054793001, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
+      propertyPath: m_Color.r
+      value: 0.6415094
+      objectReference: {fileID: 0}
+    - target: {fileID: 3919224647054793001, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6415094
+      objectReference: {fileID: 0}
+    - target: {fileID: 3919224647054793001, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6415094
+      objectReference: {fileID: 0}
     - target: {fileID: 3919224647054793002, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
       propertyPath: m_Name
       value: Main Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 3919224647054793002, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
