@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.IO;
-using Gisha.Glide.Level;
-using Gisha.Glide.AirplaneGeneric;
 
 namespace Gisha.Glide.Game
 {
@@ -28,13 +25,21 @@ namespace Gisha.Glide.Game
 
             if (gameSceneName == null)
                 Debug.LogError("You haven't selected Game Scene!");
-            if (levelScenesNames == null || levelScenesNames.Length == 0) 
+            if (levelScenesNames == null || levelScenesNames.Length == 0)
                 Debug.LogError("You haven't selected any Level Scene!");
         }
 
         private void Start()
         {
             ReloadLevel();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+                LoadNextLevel();
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+                LoadPreviousLevel();
         }
 
         private void CreateInstance()
@@ -48,9 +53,9 @@ namespace Gisha.Glide.Game
                 Destroy(gameObject);
         }
 
-        private static string GetPathToScene(string relativePath, string sceneName) => $"{relativePath}/{sceneName}";
+        private string GetPathToScene(string relativePath, string sceneName) => $"{relativePath}/{sceneName}";
 
-        private static void LoadLevel(int index)
+        private void LoadLevel(int index)
         {
             SceneManager.LoadScene(
                 GetPathToScene(Instance.mainRelativePath, Instance.gameSceneName));
@@ -58,16 +63,30 @@ namespace Gisha.Glide.Game
                 GetPathToScene(Instance.levelsRelativePath, Instance.levelScenesNames[index]), LoadSceneMode.Additive);
         }
 
+        //////////////////
+        /// STATIC ENTRY:
+        //////////////////
+
         public static void LoadNextLevel()
         {
-            if (CurrentLevelIndex + 1 < Instance.levelScenesNames.Length)
+            if (CurrentLevelIndex < Instance.levelScenesNames.Length - 1)
                 CurrentLevelIndex++;
             else
                 CurrentLevelIndex = 0;
 
-            LoadLevel(CurrentLevelIndex);
+            Instance.LoadLevel(CurrentLevelIndex);
         }
 
-        public static void ReloadLevel() => LoadLevel(CurrentLevelIndex);
+        public static void LoadPreviousLevel()
+        {
+            if (CurrentLevelIndex > 0)
+                CurrentLevelIndex--;
+            else
+                CurrentLevelIndex = Instance.levelScenesNames.Length - 1;
+
+            Instance.LoadLevel(CurrentLevelIndex);
+        }
+
+        public static void ReloadLevel() => Instance.LoadLevel(CurrentLevelIndex);
     }
 }
