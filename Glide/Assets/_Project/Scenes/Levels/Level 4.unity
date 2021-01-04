@@ -469,7 +469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7710683748017266908, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
       propertyPath: m_Name
-      value: Flying Sphere (5)
+      value: Flying Crystal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
@@ -604,7 +604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7710683748017266908, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
       propertyPath: m_Name
-      value: Flying Sphere (1)
+      value: Flying Crystal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
@@ -811,7 +811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7710683748017266908, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
       propertyPath: m_Name
-      value: Flying Sphere (7)
+      value: Flying Crystal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
@@ -1343,7 +1343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7710683748017266908, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
       propertyPath: m_Name
-      value: Flying Sphere (6)
+      value: Flying Crystal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
@@ -1744,7 +1744,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1427712203798304586, guid: 4aa8e477eaae11c4182e5211eac9905e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4279
+      value: 3918.8088
       objectReference: {fileID: 0}
     - target: {fileID: 1427712203798304586, guid: 4aa8e477eaae11c4182e5211eac9905e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1752,7 +1752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1427712203798304586, guid: 4aa8e477eaae11c4182e5211eac9905e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 767
+      value: 893.9149
       objectReference: {fileID: 0}
     - target: {fileID: 1427712203798304586, guid: 4aa8e477eaae11c4182e5211eac9905e, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1760,7 +1760,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1427712203798304586, guid: 4aa8e477eaae11c4182e5211eac9905e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.36993062
+      value: -0.01854612
       objectReference: {fileID: 0}
     - target: {fileID: 1427712203798304586, guid: 4aa8e477eaae11c4182e5211eac9905e, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1768,7 +1768,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1427712203798304586, guid: 4aa8e477eaae11c4182e5211eac9905e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9290594
+      value: 0.99982804
       objectReference: {fileID: 0}
     - target: {fileID: 1427712203798304586, guid: 4aa8e477eaae11c4182e5211eac9905e, type: 3}
       propertyPath: m_RootOrder
@@ -1780,7 +1780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1427712203798304586, guid: 4aa8e477eaae11c4182e5211eac9905e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -43.423
+      value: -2.125
       objectReference: {fileID: 0}
     - target: {fileID: 1427712203798304586, guid: 4aa8e477eaae11c4182e5211eac9905e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1788,19 +1788,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1427712203798304587, guid: 4aa8e477eaae11c4182e5211eac9905e, type: 3}
       propertyPath: m_Name
-      value: Directional Structure
-      objectReference: {fileID: 0}
-    - target: {fileID: 4520430568857741414, guid: 4aa8e477eaae11c4182e5211eac9905e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 275
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517794988661968003, guid: 4aa8e477eaae11c4182e5211eac9905e, type: 3}
-      propertyPath: movementDirection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6517794988661968003, guid: 4aa8e477eaae11c4182e5211eac9905e, type: 3}
-      propertyPath: speed
-      value: 75
+      value: Dynamic Crystal Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4aa8e477eaae11c4182e5211eac9905e, type: 3}
@@ -2006,7 +1994,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7710683748017266908, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
       propertyPath: m_Name
-      value: Flying Sphere (4)
+      value: Flying Crystal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
@@ -2214,7 +2202,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7710683748017266908, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
       propertyPath: m_Name
-      value: Flying Sphere (2)
+      value: Flying Crystal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
@@ -2366,7 +2354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7710683748017266908, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
       propertyPath: m_Name
-      value: Flying Sphere (3)
+      value: Flying Crystal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
@@ -2759,7 +2747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7710683748017266908, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
       propertyPath: m_Name
-      value: Flying Sphere
+      value: Flying Crystal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
