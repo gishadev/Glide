@@ -451,6 +451,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 1.3715338
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 2.880747
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 1.3043994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_DirtyAABB
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7710683748017266908, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
       propertyPath: m_Name
       value: Flying Sphere (5)
@@ -568,6 +584,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 160887933012501417, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 1.3715338
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 2.880747
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 1.3043994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_DirtyAABB
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7710683748017266908, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
@@ -759,6 +791,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 160887933012501417, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 1.3715338
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 2.880747
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 1.3043994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_DirtyAABB
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7710683748017266908, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
@@ -1275,6 +1323,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 160887933012501417, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 1.3715338
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 2.880747
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 1.3043994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_DirtyAABB
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7710683748017266908, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
@@ -1924,6 +1988,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 1.3715338
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 2.880747
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 1.3043994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_DirtyAABB
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7710683748017266908, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
       propertyPath: m_Name
       value: Flying Sphere (4)
@@ -2116,6 +2196,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 1.3715338
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 2.880747
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 1.3043994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_DirtyAABB
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7710683748017266908, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
       propertyPath: m_Name
       value: Flying Sphere (2)
@@ -2250,6 +2346,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 160887933012501417, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 1.3715338
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 2.880747
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 1.3043994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_DirtyAABB
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7710683748017266908, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
@@ -2627,6 +2739,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 160887933012501417, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 1.3715338
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 2.880747
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 1.3043994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
+      propertyPath: m_DirtyAABB
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7710683748017266908, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
