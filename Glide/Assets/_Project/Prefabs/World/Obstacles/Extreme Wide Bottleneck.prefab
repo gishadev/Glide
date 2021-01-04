@@ -105,7 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1691669964861394053}
   m_Layer: 0
-  m_Name: Extreme Bottleneck
+  m_Name: Extreme Wide Bottleneck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

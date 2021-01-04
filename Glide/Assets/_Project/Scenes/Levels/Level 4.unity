@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4482447, g: 0.49827182, b: 0.5755813, a: 1}
+  m_IndirectSpecularColor: {r: 0.81413585, g: 0.81413585, b: 0.81413585, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000004, guid: 5a07cf22e5f2eb04db48b1e35a706140, type: 2}
+  m_LightingDataAsset: {fileID: 112000002, guid: 5a07cf22e5f2eb04db48b1e35a706140, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -533,6 +533,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Light
       objectReference: {fileID: 0}
+    - target: {fileID: 4253867025258074321, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052075055525461614, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437237262505744189, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
+      propertyPath: m_Intensity
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 9014223040179549058, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
+      propertyPath: m_Intensity
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b95155a06b28f344f8f29da7811d621e, type: 3}
 --- !u!1001 &417626817
@@ -584,22 +600,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 160887933012501417, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
-      propertyPath: m_AABB.m_Extent.x
-      value: 1.3715338
-      objectReference: {fileID: 0}
-    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
-      propertyPath: m_AABB.m_Extent.y
-      value: 2.880747
-      objectReference: {fileID: 0}
-    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
-      propertyPath: m_AABB.m_Extent.z
-      value: 1.3043994
-      objectReference: {fileID: 0}
-    - target: {fileID: 4564269725749360180, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}
-      propertyPath: m_DirtyAABB
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7710683748017266908, guid: 9d16f8ff82d6742468baf0998264853f, type: 3}

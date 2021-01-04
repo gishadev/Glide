@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2105861699490385145}
   m_Layer: 0
-  m_Name: Bottleneck
+  m_Name: Wide Bottleneck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

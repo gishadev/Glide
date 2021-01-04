@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dynamicTrans: {fileID: 483195497683431936}
-  speed: 25
-  maxDistFromCenter: 70
+  speed: 15
+  maxDistFromCenter: 65
   movementDirection: 1
 --- !u!1 &9045331732933030468
 GameObject:
