@@ -51,8 +51,6 @@ namespace Gisha.Glide.AirplaneGeneric
             _airplane = GetComponent<Airplane>();
 
             GetRigidbodyParams();
-            
-            Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void OnEnable() => _airplane.OnCharge += ChangeModeOnCharge;

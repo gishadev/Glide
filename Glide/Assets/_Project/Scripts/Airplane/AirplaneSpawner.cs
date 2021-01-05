@@ -1,5 +1,4 @@
-﻿using Gisha.Glide.Level;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gisha.Glide.AirplaneGeneric
 {

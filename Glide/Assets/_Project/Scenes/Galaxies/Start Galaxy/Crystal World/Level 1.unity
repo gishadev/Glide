@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.81413585, g: 0.81413585, b: 0.81413585, a: 1}
+  m_IndirectSpecularColor: {r: 0.70043844, g: 0.70043844, b: 0.70043844, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1757,6 +1757,10 @@ PrefabInstance:
       propertyPath: tunnelParent
       value: 
       objectReference: {fileID: 1839838441}
+    - target: {fileID: 8949291279385105444, guid: 81322f577b013714981aedf597854a58, type: 3}
+      propertyPath: tunnelMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 8b4acb418b0fd33459692bda8f7934c6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81322f577b013714981aedf597854a58, type: 3}
 --- !u!4 &6464010752315838249 stripped

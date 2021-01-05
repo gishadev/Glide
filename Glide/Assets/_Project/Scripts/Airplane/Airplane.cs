@@ -55,7 +55,7 @@ namespace Gisha.Glide.AirplaneGeneric
         public void Die()
         {
             Debug.Log("<color=purple>Airplane was destroyed!</color>");
-            GameManager.ReloadLevel();
+            SceneLoader.ReloadLevel();
         }
 
         public void ChargeUp() => OnCharge(true);

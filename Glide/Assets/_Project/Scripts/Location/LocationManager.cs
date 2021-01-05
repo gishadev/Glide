@@ -1,20 +1,20 @@
 ﻿using Gisha.Glide.AirplaneGeneric;
 using UnityEngine;
 
-namespace Gisha.Glide.Level
+namespace Gisha.Glide.Location
 {
-    public class LevelManager : MonoBehaviour
+    public class LocationManager : MonoBehaviour
     {
         #region Singleton
-        public static LevelManager Instance { get; private set; }
+        public static LocationManager Instance { get; private set; }
         #endregion
 
         [Header("General")]
-        [SerializeField] private LevelSettings settings = default;
-
-        [Header("Links")]
         [SerializeField] private Transform spawnpoint = default;
         [SerializeField] private Transform tunnelParent = default;
+
+        [Header("Material")]
+        [SerializeField] private Material tunnelMaterial = default;
 
         public Transform Spawnpoint => spawnpoint;
 
@@ -31,6 +31,7 @@ namespace Gisha.Glide.Level
         private void Start()
         {
             AirplaneSpawner.Instance.SpawnAirplane(Spawnpoint.position);
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void OnValidate()
@@ -39,7 +40,7 @@ namespace Gisha.Glide.Level
                 return;
 
             foreach (Renderer renderer in tunnelParent.GetComponentsInChildren<Renderer>())
-                renderer.material = settings.TunnelMaterial;
+                renderer.material = tunnelMaterial;
         }
     }
 }
