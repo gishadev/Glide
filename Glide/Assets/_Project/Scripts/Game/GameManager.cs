@@ -20,8 +20,8 @@ namespace Gisha.Glide.Game
         {
             if (Input.GetKeyDown(KeyCode.RightArrow))
                 SceneLoader.LoadNextLevel();
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-                SceneLoader.LoadPreviousLevel();
+            //if (Input.GetKeyDown(KeyCode.LeftArrow))
+            //    SceneLoader.LoadPreviousLevel();
             if (Input.GetKeyDown(KeyCode.Escape))
                 SceneLoader.LoadMainMenu();
         }
@@ -39,7 +39,8 @@ namespace Gisha.Glide.Game
 
         public void OnPassLevel()
         {
-            levelsData.passedCoords.Add(SceneLoader.currentCoords);
+            levelsData.allLevels[CoordsManager.CurrentCoords].SetLevelState(LevelState.Passed);
+            levelsData.allLevels[CoordsManager.GetNextCoords()].SetLevelState(LevelState.Next);
 
             Debug.Log("<color=green>Airplane was teleported!</color>");
             SceneLoader.LoadNextLevel();

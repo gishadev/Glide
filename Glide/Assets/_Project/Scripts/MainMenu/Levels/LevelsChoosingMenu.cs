@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using System.Linq;
 
 namespace Gisha.Glide.MainMenu.Levels
 {
@@ -10,56 +11,52 @@ namespace Gisha.Glide.MainMenu.Levels
     {
         [Header("General")]
         [SerializeField] private LevelsData levelsData = default;
-
-        [Header("UI")]
         [SerializeField] private Transform galaxyTrans = default;
-        [SerializeField] private WorldUI[] worldsUI = default;
 
         [Header("Colors")]
         [SerializeField] private Color passedColor = default;
         [SerializeField] private Color nextColor = default;
         [SerializeField] private Color nonexistentColor = default;
-
         public Transform WorldsParent => galaxyTrans.GetChild(0);
 
-        private void OnValidate()
-        {
-            for (int i = 0; i < worldsUI.Length; i++)
-                WorldsParent.GetChild(i).name = worldsUI[i].name;
-        }
+        Dictionary<LevelCoords, LevelUI> _levelsUI = new Dictionary<LevelCoords, LevelUI>();
 
         private void Start()
         {
-            UpdateUIFromData();
+            Debug.Log(levelsData.allLevels.Count);
+            Debug.Log(levelsData.galaxies.Length);
+
+            //UpdateUIFromScene();
+            //UpdateUIFromData();
         }
 
-        [ContextMenu("Update UI From Data")]
         private void UpdateUIFromData()
         {
-            for (int i = 0; i < levelsData.galaxies.Length; i++)
-                for (int j = 0; j < levelsData.galaxies[i].worlds.Length; j++)
-                    for (int p = 0; p < levelsData.galaxies[i].worlds[j].levels.Length; p++)
-                    {
-                        var level = levelsData.galaxies[i].worlds[j].levels[p];
-                        var levelUI = worldsUI[j].levelsUI[p];
-                        var state = level.levelState;
-                        switch (state)
-                        {
-                            case LevelState.Passed:
-                                levelUI.ChangeColor(passedColor);
-                                break;
-                            case LevelState.Next:
-                                levelUI.ChangeColor(nextColor);
-                                break;
-                            case LevelState.Nonexistent:
-                                levelUI.gameObject.SetActive(false);
-                                levelUI.ChangeColor(nonexistentColor);
-                                break;
-                            case LevelState.Hidden:
-                                levelUI.gameObject.SetActive(false);
-                                break;
-                        }
-                    }
+            var keys = new List<LevelCoords>(_levelsUI.Keys);
+            for (int i = 0; i < keys.Count; i++)
+            {
+                var key = keys[i];
+                var levelUI = _levelsUI[key];
+                var state = levelsData.allLevels[key].LevelState;
+                switch (state)
+                {
+                    case LevelState.Passed:
+                        levelUI.ChangeColor(passedColor);
+                        levelUI.gameObject.SetActive(true);
+                        break;
+                    case LevelState.Next:
+                        levelUI.ChangeColor(nextColor);
+                        levelUI.gameObject.SetActive(true);
+                        break;
+                    case LevelState.Nonexistent:
+                        levelUI.ChangeColor(nonexistentColor);
+                        levelUI.gameObject.SetActive(false);
+                        break;
+                    case LevelState.Hidden:
+                        levelUI.gameObject.SetActive(false);
+                        break;
+                }
+            }
         }
 
         #region Data Updater
@@ -68,84 +65,62 @@ namespace Gisha.Glide.MainMenu.Levels
         {
             UpdateUIFromScene();
 
-            var allCoords = new List<LevelCoords>();
-
+            var allLevels = new Dictionary<LevelCoords, LevelData>();
             var galaxies = new GalaxyData[1];
             galaxies[0].galaxyName = galaxyTrans.name;
 
-            var worlds = new WorldData[worldsUI.Length];
+            var worldNames = new string[WorldsParent.childCount];
 
-            for (int i = 0; i < worlds.Length; i++)
+            for (int i = 0; i < worldNames.Length; i++)
             {
-                worlds[i] = new WorldData();
-                worlds[i].worldName = worldsUI[i].name;
+                var worldTrans = WorldsParent.GetChild(i);
 
-                worlds[i].levels = new LevelData[worldsUI[i].levelsUI.Length];
+                worldNames[i] = worldTrans.name;
 
-                for (int j = 0; j < worlds[i].levels.Length; j++)
+                for (int j = 0; j < worldTrans.childCount; j++)
                 {
-                    //////////
-                    // COORDS
-                    //////////
-                    var coords = new LevelCoords(0, i, j);
-                    allCoords.Add(coords);
+                    var pathToLevelSceneAsset = $"Assets/{PathBuilder.GetSceneAssetPathFromNames(galaxies[0].galaxyName, worldNames[i], j)}.unity";
 
-                    ///////////////
-                    // LEVELS DATA
-                    ///////////////
-                    string pathToLevelSceneAsset = $"Assets/{PathBuilder.GetSceneAssetPathFromNames(galaxies[0].galaxyName, worlds[i].worldName, j)}.unity";
+                    LevelState levelState = LevelState.Nonexistent;
+                    SceneAsset sceneAsset = null;
                     if (!File.Exists(pathToLevelSceneAsset))
-                    {
                         Debug.Log($"<color=red>Nonexistent scene asset:</color>{pathToLevelSceneAsset}");
-                        worlds[i].levels[j].levelState = LevelState.Nonexistent;
-                    }
                     else
-                        worlds[i].levels[j].levelState = i == 0 && j == 0 ? LevelState.Next : LevelState.Hidden;
+                    {
+                        levelState = i == 0 && j == 0 ? LevelState.Next : LevelState.Hidden;
+                        sceneAsset = (SceneAsset)AssetDatabase.LoadAssetAtPath(pathToLevelSceneAsset, typeof(SceneAsset));
+                    }
 
-                    worlds[i].levels[j].levelScene = (SceneAsset)AssetDatabase.LoadAssetAtPath(pathToLevelSceneAsset, typeof(SceneAsset));
+                    allLevels.Add(new LevelCoords(0, i, j), new LevelData(sceneAsset, levelState));
                 }
             }
 
-            galaxies[0].worlds = worlds;
+            galaxies[0].worldNames = worldNames;
 
-            SceneLoader.SetNewLevelsData(allCoords, galaxies);
+            levelsData.galaxies = galaxies;
+            levelsData.allLevels = allLevels;
+
+            UpdateUIFromData();
         }
 
         private void UpdateUIFromScene()
         {
-            worldsUI = new WorldUI[WorldsParent.childCount];
+            _levelsUI = new Dictionary<LevelCoords, LevelUI>();
 
-            // Worlds UI //
-            for (int i = 0; i < worldsUI.Length; i++)
+            for (int i = 0; i < WorldsParent.childCount; i++)
             {
                 var worldTrans = WorldsParent.GetChild(i);
 
-                var levelsUI = worldTrans.GetComponentsInChildren<LevelUI>(true);
-                worldsUI[i] = new WorldUI(worldTrans.name, levelsUI);
-
-                // Levels UI //
-                for (int j = 0; j < worldsUI[i].levelsUI.Length; j++)
+                var childrenLevelsUI = worldTrans.GetComponentsInChildren<LevelUI>(true);
+                for (int j = 0; j < childrenLevelsUI.Length; j++)
                 {
                     var coords = new LevelCoords(0, i, j);
 
-                    LevelUI level = worldsUI[i].levelsUI[j];
-                    level.Coords = coords;
+                    childrenLevelsUI[j].Coords = coords;
+                    _levelsUI.Add(coords, childrenLevelsUI[j]);
                 }
             }
         }
         #endregion
-    }
-
-    [System.Serializable]
-    public class WorldUI
-    {
-        public string name;
-        public LevelUI[] levelsUI;
-
-        public WorldUI(string name, LevelUI[] levelsUI)
-        {
-            this.name = name;
-            this.levelsUI = levelsUI;
-        }
     }
 }

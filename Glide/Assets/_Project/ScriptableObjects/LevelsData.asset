@@ -14,64 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   galaxies:
   - galaxyName: Start Galaxy
-    worlds:
-    - worldName: Crystal World
-      levelScenes:
-      - {fileID: 102900000, guid: 7aeb5414a9e98d84cb3d9daec412ee1b, type: 3}
-      - {fileID: 102900000, guid: c5f9843360949e5468bf6828ce447ada, type: 3}
-      - {fileID: 102900000, guid: 9164fd9bb51d24940820b2c24bbfb1bf, type: 3}
-      - {fileID: 102900000, guid: 5b4f08108ea3e9745b36948e009f9c46, type: 3}
-      - {fileID: 102900000, guid: a797de9c2becc6e4992972e3f33cdfec, type: 3}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-    - worldName: World_2
-      levelScenes:
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-    - worldName: World_3
-      levelScenes:
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-    - worldName: World_4
-      levelScenes:
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-    - worldName: World_5
-      levelScenes:
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
-      - {fileID: 0}
+    worldNames:
+    - Crystal World
+    - World_2
+    - World_3
+    - World_4
+    - World_5

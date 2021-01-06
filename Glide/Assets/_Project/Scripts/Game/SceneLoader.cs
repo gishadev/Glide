@@ -1,48 +1,37 @@
-﻿using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine.SceneManagement;
+using System.Linq;
 
 namespace Gisha.Glide.Game
 {
     public static class SceneLoader
     {
-        public static LevelCoords currentCoords;
-
-        public static void SetNewLevelsData(List<LevelCoords> coords, GalaxyData[] galaxies)
-        {
-            var data = AssetDatabase.LoadAssetAtPath(PathBuilder.LevelsDataRelativePath, typeof(LevelsData)) as LevelsData;
-            data.galaxies = galaxies;
-            data.levelsCoords = coords;
-            data.passedCoords.Clear();
-        }
-
         public static void LoadLevel(LevelCoords coords)
         {
-            currentCoords = coords;
+            CoordsManager.SetCoords(coords);
 
             SceneManager.LoadScene(PathBuilder.GetPathToMainScene("Game"));
-            SceneManager.LoadScene(PathBuilder.GetSceneAssetPathFromCoords(currentCoords), LoadSceneMode.Additive);
+            SceneManager.LoadScene(PathBuilder.GetSceneAssetPathFromCoords(CoordsManager.CurrentCoords), LoadSceneMode.Additive);
         }
 
         public static void LoadMainMenu()
         {
-            currentCoords = new LevelCoords(-1, -1, -1);
+            CoordsManager.SetCoords(new LevelCoords(-1, -1, -1));
             SceneManager.LoadScene(PathBuilder.GetPathToMainScene("MainMenu"), LoadSceneMode.Single);
         }
 
         public static void LoadNextLevel()
         {
-            currentCoords = new LevelCoords(currentCoords.GalaxyID, currentCoords.WorldID, currentCoords.LevelID + 1);
-            LoadLevel(currentCoords);
+            CoordsManager.MoveNext();
+            LoadLevel(CoordsManager.CurrentCoords);
         }
 
-        public static void LoadPreviousLevel()
-        {
-            currentCoords = new LevelCoords(currentCoords.GalaxyID, currentCoords.WorldID, currentCoords.LevelID - 1);
-            LoadLevel(currentCoords);
-        }
+        //public static void LoadPreviousLevel()
+        //{
+        //    CoordsManager.MovePrevious();
+        //    LoadLevel(CoordsManager.CurrentCoords);
+        //}
 
-        public static void ReloadLevel() => LoadLevel(currentCoords);
+        public static void ReloadLevel() => LoadLevel(CoordsManager.CurrentCoords);
     }
 
     public struct LevelCoords
@@ -59,33 +48,32 @@ namespace Gisha.Glide.Game
         }
     }
 
-    public static class PathBuilder
+    public static class CoordsManager
     {
-        // PATHES //
-        public const string MainRelativePath = "_Project/Scenes/Main";
-        public const string GalaxiesRelativePath = "_Project/Scenes/Galaxies";
+        public static LevelCoords CurrentCoords { get; private set; }
 
-        public const string LevelsDataRelativePath = "Assets/_Project/ScriptableObjects/LevelsData.asset";
+        public static void SetCoords(LevelCoords coords) => CurrentCoords = coords;
 
-        public static LevelsData LevelsDataAsset
-        => AssetDatabase.LoadAssetAtPath(LevelsDataRelativePath, typeof(LevelsData)) as LevelsData;
-
-        public static string GetSceneAssetPathFromCoords(LevelCoords coords)
+        public static LevelCoords GetNextCoords()
         {
-            var data = LevelsDataAsset;
+            var data = PathBuilder.LevelsDataAsset;
 
-            return $"{GalaxiesRelativePath}/" +
-                $"{data.galaxies[coords.GalaxyID].galaxyName}/" +
-                $"{data.galaxies[coords.GalaxyID].worlds[coords.WorldID].worldName}/" +
-                $"Level {coords.LevelID + 1}";
+            var maxLevelsInWorld = data.allLevels
+                .Where(x => x.Key.WorldID == CurrentCoords.WorldID)
+                .Max(x => x.Key.LevelID);
+            var maxWorldsInGalaxy = data.allLevels
+                .Where(x => x.Key.GalaxyID == CurrentCoords.GalaxyID)
+                .Max(x => x.Key.WorldID);
+
+            var newLevelID = CurrentCoords.LevelID + 1;
+            var newWorldID = CurrentCoords.WorldID + 1;
+
+            var levelID = newLevelID <= maxLevelsInWorld ? newLevelID : 0;
+            var worldID = newLevelID > maxLevelsInWorld && newWorldID <= maxWorldsInGalaxy ? newWorldID : CurrentCoords.WorldID;
+
+            return new LevelCoords(CurrentCoords.GalaxyID, worldID, levelID);
         }
 
-        public static string GetSceneAssetPathFromNames(string galaxyName, string worldName, int levelIndex)
-        {
-            return $"{GalaxiesRelativePath}/{galaxyName}/{worldName}/Level {levelIndex + 1}";
-        }
-
-        public static string GetPathToMainScene(string sceneName) 
-            => $"{MainRelativePath}/{sceneName}";
+        public static void MoveNext() => CurrentCoords = GetNextCoords();
     }
 }
