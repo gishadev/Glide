@@ -3338,7 +3338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1286408053}
   m_Layer: 5
-  m_Name: Galaxy
+  m_Name: Start Galaxy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3704,7 +3704,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feee5fc30b1cefc4aa6fbbfc1ae58542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldsParent: {fileID: 1550270456}
+  levelsData: {fileID: 11400000, guid: e11d28e8df32c174aa7c7043d010baa9, type: 2}
+  galaxyTrans: {fileID: 1286408053}
   worldsUI:
   - name: Crystal World
     levelsUI:
@@ -6531,11 +6532,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6240169774025596177, guid: 0e4112000c856d94db5b82f685308f42, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -60
+      value: -75.9
       objectReference: {fileID: 0}
     - target: {fileID: 6240169774025596177, guid: 0e4112000c856d94db5b82f685308f42, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 183
+      value: 181.2
       objectReference: {fileID: 0}
     - target: {fileID: 6240169774025596177, guid: 0e4112000c856d94db5b82f685308f42, type: 3}
       propertyPath: m_SizeDelta.x

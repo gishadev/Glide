@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Gisha.Glide.Game
 {
@@ -7,12 +8,20 @@ namespace Gisha.Glide.Game
     public class LevelsData : ScriptableObject
     {
         public GalaxyData[] galaxies;
+        public List<LevelCoords> levelsCoords = new List<LevelCoords>();
     }
 
     [System.Serializable]
     public struct GalaxyData
     {
         public string galaxyName;
-        public string[] worldNames;
+        public WorldData[] worlds;
+    }
+
+    [System.Serializable]
+    public struct WorldData
+    {
+        public string worldName;
+        public UnityEditor.SceneAsset[] levelScenes;
     }
 }

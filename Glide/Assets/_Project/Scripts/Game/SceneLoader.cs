@@ -6,12 +6,13 @@ namespace Gisha.Glide.Game
 {
     public static class SceneLoader
     {
-        public static List<LevelCoords> levelsCoords = new List<LevelCoords>();
         public static LevelCoords currentCoords;
 
-        public static void UpdateLevelsCoords(List<LevelCoords> coords)
+        public static void SetLevelsData(List<LevelCoords> coords, GalaxyData[] galaxies)
         {
-            levelsCoords = coords;
+            var data = AssetDatabase.LoadAssetAtPath(PathBuilder.LevelsDataRelativePath, typeof(LevelsData)) as LevelsData;
+            data.levelsCoords = coords;
+            data.galaxies = galaxies;
         }
 
         public static void LoadLevel(LevelCoords coords)
@@ -19,7 +20,7 @@ namespace Gisha.Glide.Game
             currentCoords = coords;
 
             SceneManager.LoadScene(PathBuilder.GetPathToMainScene("Game"));
-            SceneManager.LoadScene(PathBuilder.GetLevelPathFromCoords(currentCoords), LoadSceneMode.Additive);
+            SceneManager.LoadScene(PathBuilder.GetSceneAssetPathFromCoords(currentCoords), LoadSceneMode.Additive);
         }
 
         public static void LoadMainMenu()
@@ -63,18 +64,27 @@ namespace Gisha.Glide.Game
         public const string MainRelativePath = "_Project/Scenes/Main";
         public const string GalaxiesRelativePath = "_Project/Scenes/Galaxies";
 
-        public const string LevelsDataRelativePath = "_Project/ScriptableObjects/LevelsData.asset";
+        public const string LevelsDataRelativePath = "Assets/_Project/ScriptableObjects/LevelsData.asset";
 
-        public static string GetLevelPathFromCoords(LevelCoords coords)
+        public static LevelsData LevelsDataAsset
+        => AssetDatabase.LoadAssetAtPath(LevelsDataRelativePath, typeof(LevelsData)) as LevelsData;
+
+        public static string GetSceneAssetPathFromCoords(LevelCoords coords)
         {
-            var data = AssetDatabase.LoadAssetAtPath("Assets/" + LevelsDataRelativePath, typeof(LevelsData)) as LevelsData;
+            var data = LevelsDataAsset;
 
             return $"{GalaxiesRelativePath}/" +
                 $"{data.galaxies[coords.GalaxyID].galaxyName}/" +
-                $"{data.galaxies[coords.GalaxyID].worldNames[coords.WorldID]}/" +
+                $"{data.galaxies[coords.GalaxyID].worlds[coords.WorldID].worldName}/" +
                 $"Level {coords.LevelID + 1}";
         }
 
-        public static string GetPathToMainScene(string sceneName) => $"{MainRelativePath}/{sceneName}";
+        public static string GetSceneAssetPathFromNames(string galaxyName, string worldName, int levelIndex)
+        {
+            return $"{GalaxiesRelativePath}/{galaxyName}/{worldName}/Level {levelIndex + 1}";
+        }
+
+        public static string GetPathToMainScene(string sceneName) 
+            => $"{MainRelativePath}/{sceneName}";
     }
 }

@@ -1,54 +1,92 @@
 ﻿using Gisha.Glide.Game;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using System.IO;
 
 namespace Gisha.Glide.MainMenu.Levels
 {
     public class LevelsChoosingMenu : MonoBehaviour
     {
         [Header("General")]
-        [SerializeField] private Transform worldsParent = default;
+        [SerializeField] private LevelsData levelsData = default;
+
+
+        [Header("UI")]
+        [SerializeField] private Transform galaxyTrans = default;
         [SerializeField] private WorldUI[] worldsUI = default;
 
-        private void Start()
-        {
-            UpdateLevelsData();
-            SetLevelsUIData();
-        }
+        public Transform WorldsParent => galaxyTrans.GetChild(0);
 
-        private void OnValidate()
-        {
-            for (int i = 0; i < worldsUI.Length; i++)
-                worldsParent.GetChild(i).name = worldsUI[i].name;
-        }
+        //private void OnValidate()
+        //{
+        //    for (int i = 0; i < worldsUI.Length; i++)
+        //        worldsParent.GetChild(i).name = worldsUI[i].name;
+        //}
 
-        private void SetLevelsUIData()
+        [ContextMenu("Set Data From UI")]
+        private void UpdateDataFromUI()
         {
-            List<LevelCoords> allCoords = new List<LevelCoords>();
+            UpdateUIFromScene();
 
-            for (int i = 0; i < worldsUI.Length; i++)
-                for (int j = 0; j < worldsUI[i].levelsUI.Length; j++)
+            var allCoords = new List<LevelCoords>();
+
+            var galaxies = new GalaxyData[1];
+            galaxies[0].galaxyName = galaxyTrans.name;
+
+            var worlds = new WorldData[worldsUI.Length];
+
+            for (int i = 0; i < worlds.Length; i++)
+            {
+                worlds[i] = new WorldData();
+                worlds[i].worldName = worldsUI[i].name;
+
+                worlds[i].levelScenes = new SceneAsset[worldsUI[i].levelsUI.Length];
+
+                for (int j = 0; j < worlds[i].levelScenes.Length; j++)
                 {
                     var coords = new LevelCoords(0, i, j);
                     allCoords.Add(coords);
 
-                    LevelUI level = worldsUI[i].levelsUI[j];
-                    level.Coords = coords;
-                }
+                    string pathToLevelSceneAsset = $"Assets/{PathBuilder.GetSceneAssetPathFromNames(galaxies[0].galaxyName, worlds[i].worldName, j)}.unity";
+                    if (!File.Exists(pathToLevelSceneAsset))
+                        Debug.Log($"<color=red>Nonexistent scene asset:</color>{pathToLevelSceneAsset}");
 
-            SceneLoader.UpdateLevelsCoords(allCoords);
+                    worlds[i].levelScenes[j] = AssetDatabase.LoadAssetAtPath(pathToLevelSceneAsset, typeof(SceneAsset)) as SceneAsset;
+                }
+            }
+
+            galaxies[0].worlds = worlds;
+
+            SceneLoader.SetLevelsData(allCoords, galaxies);
         }
 
-        [ContextMenu("Update Levels Data")]
-        private void UpdateLevelsData()
+        [ContextMenu("Update UI From Data")]
+        private void UpdateUIFromLevelsData()
         {
-            worldsUI = new WorldUI[worldsParent.childCount];
+
+        }
+
+        private void UpdateUIFromScene()
+        {
+            worldsUI = new WorldUI[WorldsParent.childCount];
+
+            // Worlds UI //
             for (int i = 0; i < worldsUI.Length; i++)
             {
-                var worldTrans = worldsParent.GetChild(i);
+                var worldTrans = WorldsParent.GetChild(i);
 
                 var levelsUI = worldTrans.GetComponentsInChildren<LevelUI>(true);
                 worldsUI[i] = new WorldUI(worldTrans.name, levelsUI);
+
+                // Levels UI //
+                for (int j = 0; j < worldsUI[i].levelsUI.Length; j++)
+                {
+                    var coords = new LevelCoords(0, i, j);
+
+                    LevelUI level = worldsUI[i].levelsUI[j];
+                    level.Coords = coords;
+                }
             }
         }
     }
