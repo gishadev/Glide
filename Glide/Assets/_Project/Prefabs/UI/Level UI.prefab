@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6240169774025596179}
   - component: {fileID: 8190076804375944142}
   m_Layer: 5
-  m_Name: Level Btn
+  m_Name: Level UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.95686275, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.9150943, g: 0.8540401, b: 0.056114297, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -88,3 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a44139a4e366047aad1cc9aca30c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 6240169774025596179}
+  passedColor: {r: 0.1481844, g: 0.8490566, b: 0.15879415, a: 1}
+  unpassedColor: {r: 0.9150943, g: 0.8540401, b: 0.056114297, a: 1}
+  nonexistentColor: {r: 0.990566, g: 0.023362402, b: 0.023362402, a: 1}

@@ -8,6 +8,9 @@ namespace Gisha.Glide.Game
         public static GameManager Instance { get; private set; }
         #endregion
 
+        [Header("General")]
+        [SerializeField] private LevelsData levelsData = default;
+
         private void Awake()
         {
             CreateInstance();
@@ -32,6 +35,14 @@ namespace Gisha.Glide.Game
 
             if (Instance != null && Instance != this)
                 Destroy(gameObject);
+        }
+
+        public void OnPassLevel()
+        {
+            levelsData.passedCoords.Add(SceneLoader.currentCoords);
+
+            Debug.Log("<color=green>Airplane was teleported!</color>");
+            SceneLoader.LoadNextLevel();
         }
     }
 }

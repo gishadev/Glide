@@ -14,8 +14,7 @@ namespace Gisha.Glide.Objects
 
         public override void OnTriggerSignal(Collider other)
         {
-            Debug.Log("<color=green>Airplane was teleported!</color>");
-            SceneLoader.LoadNextLevel();
+            GameManager.Instance.OnPassLevel();
         }
 
         private void Start()

@@ -1,6 +1,7 @@
 ﻿using Gisha.Glide.Game;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Gisha.Glide.MainMenu.Levels
 {
@@ -8,6 +9,17 @@ namespace Gisha.Glide.MainMenu.Levels
     {
         public LevelCoords Coords { get; set; }
 
+        Image _image;
+
+        public void ChangeColor(Color color)
+        {
+            if (_image == null)
+                _image = GetComponent<Image>();
+
+            _image.color = color;
+        }
+
+        #region OnPointer
         public void OnPointerClick(PointerEventData eventData)
         {
             Debug.Log($"{Coords.GalaxyID},{Coords.WorldID},{Coords.LevelID}");
@@ -23,5 +35,6 @@ namespace Gisha.Glide.MainMenu.Levels
         {
             transform.localScale = Vector3.one;
         }
+        #endregion
     }
 }

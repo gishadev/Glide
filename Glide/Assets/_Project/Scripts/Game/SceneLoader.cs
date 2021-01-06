@@ -8,11 +8,12 @@ namespace Gisha.Glide.Game
     {
         public static LevelCoords currentCoords;
 
-        public static void SetLevelsData(List<LevelCoords> coords, GalaxyData[] galaxies)
+        public static void SetNewLevelsData(List<LevelCoords> coords, GalaxyData[] galaxies)
         {
             var data = AssetDatabase.LoadAssetAtPath(PathBuilder.LevelsDataRelativePath, typeof(LevelsData)) as LevelsData;
-            data.levelsCoords = coords;
             data.galaxies = galaxies;
+            data.levelsCoords = coords;
+            data.passedCoords.Clear();
         }
 
         public static void LoadLevel(LevelCoords coords)
