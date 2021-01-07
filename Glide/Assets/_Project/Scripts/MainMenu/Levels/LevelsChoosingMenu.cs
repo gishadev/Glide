@@ -27,9 +27,15 @@ namespace Gisha.Glide.MainMenu.Levels
         [ContextMenu("Update UI")]
         private void UpdateUI()
         {
+            LevelsData data = SaveSystem.LoadLevelsData();
             CreateLevelsUIFromScene();
 
-            LevelsData data = SaveSystem.LoadLevelsData();
+            if (data.allLevels == null || data.allLevels.Count == 0)
+            {
+                ResetLevelsData();
+                return;
+            }
+
             var keys = new List<LevelCoords>(_levelsUI.Keys);
             for (int i = 0; i < keys.Count; i++)
             {
@@ -59,41 +65,11 @@ namespace Gisha.Glide.MainMenu.Levels
 
         #region Data Updater
         [ContextMenu("Reset Data")]
-        private void UpdateLevelsData()
+        private void ResetLevelsData()
         {
             CreateLevelsUIFromScene();
-
-            var allLevels = new Dictionary<LevelCoords, LevelData>();
-            var galaxies = new GalaxyData[1];
-            galaxies[0].galaxyName = galaxyTrans.name;
-
-            var worldNames = new string[WorldsParent.childCount];
-
-            for (int i = 0; i < worldNames.Length; i++)
-            {
-                var worldTrans = WorldsParent.GetChild(i);
-
-                worldNames[i] = worldTrans.name;
-
-                for (int j = 0; j < worldTrans.childCount; j++)
-                {
-                    var pathToLevelSceneAsset = $"Assets/{PathBuilder.GetScenePathFromNames(galaxies[0].galaxyName, worldNames[i], j)}.unity";
-
-                    LevelState levelState = LevelState.Nonexistent;
-                    if (!File.Exists(pathToLevelSceneAsset))
-                        Debug.Log($"<color=red>Nonexistent scene asset:</color>{pathToLevelSceneAsset}");
-                    else
-                        levelState = i == 0 && j == 0 ? LevelState.Next : LevelState.Hidden;
-
-                    allLevels.Add(new LevelCoords(0, i, j), new LevelData((int)levelState));
-                }
-            }
-
-            galaxies[0].worldNames = worldNames;
-
-            levelsMap.galaxies = galaxies;
-            SaveSystem.SaveLevelsData(new LevelsData(allLevels));
-
+            LevelsManager.UpdateLevelsMap(galaxyTrans, levelsMap);
+            LevelsManager.CreateLevelsData(levelsMap);
             UpdateUI();
         }
 

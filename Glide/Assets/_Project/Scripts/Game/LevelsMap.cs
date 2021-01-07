@@ -13,5 +13,6 @@ namespace Gisha.Glide.Game
     {
         public string galaxyName;
         public string[] worldNames;
+        public int[] levelsCount;
     }
 }
