@@ -8,18 +8,18 @@ namespace Gisha.Glide.Game
         public const string MainRelativePath = "_Project/Scenes/Main";
         public const string GalaxiesRelativePath = "_Project/Scenes/Galaxies";
 
-        public const string LevelsMapRelativePath = "Assets/_Project/ScriptableObjects/LevelsData.asset";
+        public const string LevelsMapRelativePath = "Assets/_Project/ScriptableObjects/LevelsMap.asset";
 
-        public static LevelsMap LevelsDataAsset
+        public static LevelsMap LevelsMapAsset
         => AssetDatabase.LoadAssetAtPath(LevelsMapRelativePath, typeof(LevelsMap)) as LevelsMap;
 
         public static string GetSceneAssetPathFromCoords(LevelCoords coords)
         {
-            var data = LevelsDataAsset;
+            var map = LevelsMapAsset;
 
             return $"{GalaxiesRelativePath}/" +
-                $"{data.galaxies[coords.GalaxyID].galaxyName}/" +
-                $"{data.galaxies[coords.GalaxyID].worldNames[coords.WorldID]}/" +
+                $"{map.galaxies[coords.GalaxyID].galaxyName}/" +
+                $"{map.galaxies[coords.GalaxyID].worldNames[coords.WorldID]}/" +
                 $"Level {coords.LevelID + 1}";
         }
 
