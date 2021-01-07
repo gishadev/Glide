@@ -3499,7 +3499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: feee5fc30b1cefc4aa6fbbfc1ae58542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelsData: {fileID: 0}
+  levelsMap: {fileID: 11400000, guid: e11d28e8df32c174aa7c7043d010baa9, type: 2}
   galaxyTrans: {fileID: 1286408053}
   passedColor: {r: 0.017379522, g: 1, b: 0, a: 1}
   nextColor: {r: 0.9716981, g: 0.9056681, b: 0, a: 1}

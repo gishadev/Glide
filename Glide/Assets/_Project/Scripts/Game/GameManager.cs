@@ -9,7 +9,7 @@ namespace Gisha.Glide.Game
         #endregion
 
         [Header("General")]
-        [SerializeField] private LevelsData levelsData = default;
+        [SerializeField] private LevelsMap levelsMap = default;
 
         private void Awake()
         {
@@ -39,8 +39,12 @@ namespace Gisha.Glide.Game
 
         public void OnPassLevel()
         {
-            levelsData.allLevels[CoordsManager.CurrentCoords].SetLevelState(LevelState.Passed);
-            levelsData.allLevels[CoordsManager.GetNextCoords()].SetLevelState(LevelState.Next);
+            LevelsData data = SaveSystem.LoadLevelsData();
+
+            data.allLevels[CoordsManager.CurrentCoords].SetLevelState(LevelState.Passed);
+            data.allLevels[CoordsManager.GetNextCoords()].SetLevelState(LevelState.Next);
+
+            SaveSystem.SaveLevelsData(data);
 
             Debug.Log("<color=green>Airplane was teleported!</color>");
             SceneLoader.LoadNextLevel();

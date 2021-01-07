@@ -1,14 +1,31 @@
 ﻿using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace Gisha.Glide.Game
 {
-    [CreateAssetMenu(fileName = "LevelsData", menuName = "Scriptable Objects/Create Levels Data", order = 1)]
-    public class LevelsData : ScriptableObject
+    [System.Serializable]
+    public class LevelsData
     {
-        public GalaxyData[] galaxies;
         public Dictionary<LevelCoords, LevelData> allLevels;
+
+        public LevelsData(Dictionary<LevelCoords, LevelData> allLevels)
+        {
+            this.allLevels = allLevels;
+        }
+    }
+
+
+    [System.Serializable]
+    public class LevelData
+    {
+        public LevelState LevelState { get; private set; }
+
+        public LevelData(int levelState)
+        {
+            LevelState = (LevelState)levelState;
+        }
+
+        public void SetLevelState(LevelState state) => LevelState = state;
     }
 
     public enum LevelState
@@ -19,31 +36,17 @@ namespace Gisha.Glide.Game
         Nonexistent
     }
 
-    [System.Serializable]
-    public struct GalaxyData
+    public struct LevelCoords
     {
-        public string galaxyName;
-        public string[] worldNames;
-    }
+        public int GalaxyID { private set; get; }
+        public int WorldID { private set; get; }
+        public int LevelID { private set; get; }
 
-    [System.Serializable]
-    public struct LevelData
-    {
-        public SceneAsset levelScene;
-        public LevelState LevelState { get => _levelState; private set => _levelState = value; }
-
-         LevelState _levelState;
-
-        public LevelData(SceneAsset levelScene, LevelState levelState)
+        public LevelCoords(int galaxyID, int worldID, int levelID)
         {
-            this.levelScene = levelScene;
-            _levelState = levelState;
-        }
-
-        public void SetLevelState(LevelState state)
-        {
-            LevelState = state;
+            this.GalaxyID = galaxyID;
+            this.WorldID = worldID;
+            this.LevelID = levelID;
         }
     }
-
 }

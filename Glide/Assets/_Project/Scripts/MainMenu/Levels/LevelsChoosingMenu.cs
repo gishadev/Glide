@@ -10,7 +10,7 @@ namespace Gisha.Glide.MainMenu.Levels
     public class LevelsChoosingMenu : MonoBehaviour
     {
         [Header("General")]
-        [SerializeField] private LevelsData levelsData = default;
+        [SerializeField] private LevelsMap levelsMap = default;
         [SerializeField] private Transform galaxyTrans = default;
 
         [Header("Colors")]
@@ -23,21 +23,19 @@ namespace Gisha.Glide.MainMenu.Levels
 
         private void Start()
         {
-            Debug.Log(levelsData.allLevels.Count);
-            Debug.Log(levelsData.galaxies.Length);
-
-            //UpdateUIFromScene();
-            //UpdateUIFromData();
+            UpdateUIFromScene();
+            UpdateUIFromData();
         }
 
         private void UpdateUIFromData()
         {
+            LevelsData data = SaveSystem.LoadLevelsData();
             var keys = new List<LevelCoords>(_levelsUI.Keys);
             for (int i = 0; i < keys.Count; i++)
             {
                 var key = keys[i];
                 var levelUI = _levelsUI[key];
-                var state = levelsData.allLevels[key].LevelState;
+                var state = data.allLevels[key].LevelState;
                 switch (state)
                 {
                     case LevelState.Passed:
@@ -82,23 +80,19 @@ namespace Gisha.Glide.MainMenu.Levels
                     var pathToLevelSceneAsset = $"Assets/{PathBuilder.GetSceneAssetPathFromNames(galaxies[0].galaxyName, worldNames[i], j)}.unity";
 
                     LevelState levelState = LevelState.Nonexistent;
-                    SceneAsset sceneAsset = null;
                     if (!File.Exists(pathToLevelSceneAsset))
                         Debug.Log($"<color=red>Nonexistent scene asset:</color>{pathToLevelSceneAsset}");
                     else
-                    {
                         levelState = i == 0 && j == 0 ? LevelState.Next : LevelState.Hidden;
-                        sceneAsset = (SceneAsset)AssetDatabase.LoadAssetAtPath(pathToLevelSceneAsset, typeof(SceneAsset));
-                    }
 
-                    allLevels.Add(new LevelCoords(0, i, j), new LevelData(sceneAsset, levelState));
+                    allLevels.Add(new LevelCoords(0, i, j), new LevelData((int)levelState));
                 }
             }
 
             galaxies[0].worldNames = worldNames;
 
-            levelsData.galaxies = galaxies;
-            levelsData.allLevels = allLevels;
+            levelsMap.galaxies = galaxies;
+            SaveSystem.SaveLevelsData(new LevelsData(allLevels));
 
             UpdateUIFromData();
         }

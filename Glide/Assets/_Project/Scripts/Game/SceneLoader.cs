@@ -34,20 +34,6 @@ namespace Gisha.Glide.Game
         public static void ReloadLevel() => LoadLevel(CoordsManager.CurrentCoords);
     }
 
-    public struct LevelCoords
-    {
-        public int GalaxyID { private set; get; }
-        public int WorldID { private set; get; }
-        public int LevelID { private set; get; }
-
-        public LevelCoords(int galaxyID, int worldID, int levelID)
-        {
-            this.GalaxyID = galaxyID;
-            this.WorldID = worldID;
-            this.LevelID = levelID;
-        }
-    }
-
     public static class CoordsManager
     {
         public static LevelCoords CurrentCoords { get; private set; }
@@ -56,7 +42,7 @@ namespace Gisha.Glide.Game
 
         public static LevelCoords GetNextCoords()
         {
-            var data = PathBuilder.LevelsDataAsset;
+            var data = SaveSystem.LoadLevelsData();
 
             var maxLevelsInWorld = data.allLevels
                 .Where(x => x.Key.WorldID == CurrentCoords.WorldID)
