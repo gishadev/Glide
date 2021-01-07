@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
 namespace Gisha.Glide.Game
 {
@@ -41,6 +40,8 @@ namespace Gisha.Glide.Game
         public int GalaxyID { private set; get; }
         public int WorldID { private set; get; }
         public int LevelID { private set; get; }
+
+        public string DebugText => $"[{GalaxyID},{WorldID},{LevelID}]";
 
         public LevelCoords(int galaxyID, int worldID, int levelID)
         {

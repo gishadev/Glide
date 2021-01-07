@@ -12,10 +12,7 @@ namespace Gisha.Glide.Objects
         Transform _transform;
         Airplane _airplane;
 
-        public override void OnTriggerSignal(Collider other)
-        {
-            GameManager.Instance.OnPassLevel();
-        }
+        public override void OnTriggerSignal(Collider other) => GameManager.OnPassLevel();
 
         private void Start()
         {

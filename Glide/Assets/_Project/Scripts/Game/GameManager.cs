@@ -8,9 +8,6 @@ namespace Gisha.Glide.Game
         public static GameManager Instance { get; private set; }
         #endregion
 
-        [Header("General")]
-        [SerializeField] private LevelsMap levelsMap = default;
-
         private void Awake()
         {
             CreateInstance();
@@ -19,9 +16,7 @@ namespace Gisha.Glide.Game
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.RightArrow))
-                SceneLoader.LoadNextLevel();
-            //if (Input.GetKeyDown(KeyCode.LeftArrow))
-            //    SceneLoader.LoadPreviousLevel();
+                OnPassLevel();
             if (Input.GetKeyDown(KeyCode.Escape))
                 SceneLoader.LoadMainMenu();
         }
@@ -37,17 +32,22 @@ namespace Gisha.Glide.Game
                 Destroy(gameObject);
         }
 
-        public void OnPassLevel()
+        public static void OnPassLevel()
         {
-            LevelsData data = SaveSystem.LoadLevelsData();
-
+            var data = SaveSystem.LoadLevelsData();
             data.allLevels[CoordsManager.CurrentCoords].SetLevelState(LevelState.Passed);
-            data.allLevels[CoordsManager.GetNextCoords()].SetLevelState(LevelState.Next);
 
-            SaveSystem.SaveLevelsData(data);
+            var nextCoords = CoordsManager.GetNextCoords();
+            if (data.allLevels[nextCoords].LevelState == LevelState.Nonexistent)
+            {
+                Debug.LogError($"Level at coords {nextCoords.DebugText} is Nonexistent!");
+                return;
+            }
 
-            Debug.Log("<color=green>Airplane was teleported!</color>");
-            SceneLoader.LoadNextLevel();
+                data.allLevels[nextCoords].SetLevelState(LevelState.Next);
+                SaveSystem.SaveLevelsData(data);
+
+                SceneLoader.LoadNextLevel();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine.SceneManagement;
 using System.Linq;
+using UnityEngine;
 
 namespace Gisha.Glide.Game
 {
@@ -10,7 +11,9 @@ namespace Gisha.Glide.Game
             CoordsManager.SetCoords(coords);
 
             SceneManager.LoadScene(PathBuilder.GetPathToMainScene("Game"));
-            SceneManager.LoadScene(PathBuilder.GetSceneAssetPathFromCoords(CoordsManager.CurrentCoords), LoadSceneMode.Additive);
+            SceneManager.LoadScene(PathBuilder.GetScenePathFromCoords(CoordsManager.CurrentCoords), LoadSceneMode.Additive);
+
+            Debug.Log($"<color=green>Level at {coords.DebugText} was loaded!</color>");
         }
 
         public static void LoadMainMenu()
@@ -24,12 +27,6 @@ namespace Gisha.Glide.Game
             CoordsManager.MoveNext();
             LoadLevel(CoordsManager.CurrentCoords);
         }
-
-        //public static void LoadPreviousLevel()
-        //{
-        //    CoordsManager.MovePrevious();
-        //    LoadLevel(CoordsManager.CurrentCoords);
-        //}
 
         public static void ReloadLevel() => LoadLevel(CoordsManager.CurrentCoords);
     }

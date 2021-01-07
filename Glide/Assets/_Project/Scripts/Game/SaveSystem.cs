@@ -10,6 +10,7 @@ namespace Gisha.Glide.Game
     {
         private static string LevelsDataPath = Application.dataPath + "/_Project/levels.data";
 
+        #region LevelsData
         public static void SaveLevelsData(LevelsData levelsData)
         {
             var dictionary = new Dictionary<int[], int>();
@@ -60,12 +61,11 @@ namespace Gisha.Glide.Game
                 return null;
             }
         }
-
+        #endregion
     }
 
     public static class DictionarySerializer<TKey, TValue>
     {
-
         public static byte[] Save(Dictionary<TKey, TValue> dictionary)
         {
             var binFormatter = new BinaryFormatter();

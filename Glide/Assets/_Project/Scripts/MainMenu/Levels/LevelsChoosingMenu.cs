@@ -1,9 +1,7 @@
 ﻿using Gisha.Glide.Game;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using System.IO;
-using System.Linq;
 
 namespace Gisha.Glide.MainMenu.Levels
 {
@@ -23,12 +21,14 @@ namespace Gisha.Glide.MainMenu.Levels
 
         private void Start()
         {
-            UpdateUIFromScene();
-            UpdateUIFromData();
+            UpdateUI();
         }
 
-        private void UpdateUIFromData()
+        [ContextMenu("Update UI")]
+        private void UpdateUI()
         {
+            CreateLevelsUIFromScene();
+
             LevelsData data = SaveSystem.LoadLevelsData();
             var keys = new List<LevelCoords>(_levelsUI.Keys);
             for (int i = 0; i < keys.Count; i++)
@@ -58,10 +58,10 @@ namespace Gisha.Glide.MainMenu.Levels
         }
 
         #region Data Updater
-        [ContextMenu("Update Data From UI")]
-        private void UpdateLevelsDataFromUI()
+        [ContextMenu("Reset Data")]
+        private void UpdateLevelsData()
         {
-            UpdateUIFromScene();
+            CreateLevelsUIFromScene();
 
             var allLevels = new Dictionary<LevelCoords, LevelData>();
             var galaxies = new GalaxyData[1];
@@ -77,7 +77,7 @@ namespace Gisha.Glide.MainMenu.Levels
 
                 for (int j = 0; j < worldTrans.childCount; j++)
                 {
-                    var pathToLevelSceneAsset = $"Assets/{PathBuilder.GetSceneAssetPathFromNames(galaxies[0].galaxyName, worldNames[i], j)}.unity";
+                    var pathToLevelSceneAsset = $"Assets/{PathBuilder.GetScenePathFromNames(galaxies[0].galaxyName, worldNames[i], j)}.unity";
 
                     LevelState levelState = LevelState.Nonexistent;
                     if (!File.Exists(pathToLevelSceneAsset))
@@ -94,10 +94,10 @@ namespace Gisha.Glide.MainMenu.Levels
             levelsMap.galaxies = galaxies;
             SaveSystem.SaveLevelsData(new LevelsData(allLevels));
 
-            UpdateUIFromData();
+            UpdateUI();
         }
 
-        private void UpdateUIFromScene()
+        private void CreateLevelsUIFromScene()
         {
             _levelsUI = new Dictionary<LevelCoords, LevelUI>();
 

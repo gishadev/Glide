@@ -22,7 +22,6 @@ namespace Gisha.Glide.MainMenu.Levels
         #region OnPointer
         public void OnPointerClick(PointerEventData eventData)
         {
-            Debug.Log($"{Coords.GalaxyID},{Coords.WorldID},{Coords.LevelID}");
             SceneLoader.LoadLevel(Coords);
         }
 
