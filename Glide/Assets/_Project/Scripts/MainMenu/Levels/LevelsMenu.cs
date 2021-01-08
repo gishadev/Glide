@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Gisha.Glide.MainMenu.Levels
 {
-    public class LevelsChoosingMenu : MonoBehaviour
+    public class LevelsMenu : MonoBehaviour
     {
         [Header("General")]
         [SerializeField] private LevelsMap levelsMap = default;
@@ -25,7 +25,7 @@ namespace Gisha.Glide.MainMenu.Levels
         }
 
         [ContextMenu("Update UI")]
-        private void UpdateUI()
+        public void UpdateUI()
         {
             LevelsData data = SaveSystem.LoadLevelsData();
             CreateLevelsUIFromScene();
@@ -65,7 +65,7 @@ namespace Gisha.Glide.MainMenu.Levels
 
         #region Data Updater
         [ContextMenu("Reset Data")]
-        private void ResetLevelsData()
+        public void ResetLevelsData()
         {
             CreateLevelsUIFromScene();
             LevelsManager.UpdateLevelsMap(galaxyTrans, levelsMap);
