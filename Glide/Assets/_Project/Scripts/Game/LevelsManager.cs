@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 namespace Gisha.Glide.Game
@@ -52,6 +53,8 @@ namespace Gisha.Glide.Game
             galaxies[0].levelsCount = levelsCount;
 
             mapAsset.galaxies = galaxies;
+
+            EditorUtility.SetDirty(mapAsset);
         }
     }
 }

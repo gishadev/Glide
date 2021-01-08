@@ -38,16 +38,19 @@ namespace Gisha.Glide.Game
             data.allLevels[CoordsManager.CurrentCoords].SetLevelState(LevelState.Passed);
 
             var nextCoords = CoordsManager.GetNextCoords();
-            if (data.allLevels[nextCoords].LevelState == LevelState.Nonexistent)
+
+            switch (data.allLevels[nextCoords].LevelState)
             {
-                Debug.LogError($"Level at coords {nextCoords.DebugText} is Nonexistent!");
-                return;
+                case LevelState.Nonexistent:
+                    Debug.LogError($"Level at coords {nextCoords.DebugText} is Nonexistent!");
+                    return;
+                case LevelState.Hidden:
+                    data.allLevels[nextCoords].SetLevelState(LevelState.Next);
+                    break;
             }
 
-                data.allLevels[nextCoords].SetLevelState(LevelState.Next);
-                SaveSystem.SaveLevelsData(data);
-
-                SceneLoader.LoadNextLevel();
+            SaveSystem.SaveLevelsData(data);
+            SceneLoader.LoadNextLevel();
         }
     }
 }

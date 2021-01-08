@@ -22,11 +22,7 @@ namespace Gisha.Glide.Game
             SceneManager.LoadScene(PathBuilder.GetPathToMainScene("MainMenu"), LoadSceneMode.Single);
         }
 
-        public static void LoadNextLevel()
-        {
-            CoordsManager.MoveNext();
-            LoadLevel(CoordsManager.CurrentCoords);
-        }
+        public static void LoadNextLevel() => LoadLevel(CoordsManager.MoveNext());
 
         public static void ReloadLevel() => LoadLevel(CoordsManager.CurrentCoords);
     }
@@ -51,12 +47,22 @@ namespace Gisha.Glide.Game
             var newLevelID = CurrentCoords.LevelID + 1;
             var newWorldID = CurrentCoords.WorldID + 1;
 
+            if (newLevelID > maxLevelsInWorld && newWorldID > maxWorldsInGalaxy)
+            {
+                Debug.Log("<color=blue>Player is on last coords.</color>");
+                return CurrentCoords;
+            }
+
             var levelID = newLevelID <= maxLevelsInWorld ? newLevelID : 0;
             var worldID = newLevelID > maxLevelsInWorld && newWorldID <= maxWorldsInGalaxy ? newWorldID : CurrentCoords.WorldID;
 
             return new LevelCoords(CurrentCoords.GalaxyID, worldID, levelID);
         }
 
-        public static void MoveNext() => CurrentCoords = GetNextCoords();
+        public static LevelCoords MoveNext()
+        {
+            CurrentCoords = GetNextCoords();
+            return CurrentCoords;
+        }
     }
 }
