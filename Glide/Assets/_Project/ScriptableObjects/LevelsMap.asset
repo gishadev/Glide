@@ -16,7 +16,5 @@ MonoBehaviour:
   - galaxyName: Start Galaxy
     worldNames:
     - Crystal World
-    - World_2
-    - World_3
-    - World_4
-    - World_5
+    - Cube World
+    levelsCount: 0500000003000000
