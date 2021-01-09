@@ -10,7 +10,6 @@ namespace Gisha.Glide.Game
 
         public static LevelsMap LevelsMapAsset => AssetDatabase.LoadAssetAtPath(LevelsMapRelativePath, typeof(LevelsMap)) as LevelsMap;
 
-
         public static string GetScenePathFromCoords(LevelCoords coords)
         {
             var map = LevelsMapAsset;

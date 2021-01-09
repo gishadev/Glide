@@ -28,11 +28,13 @@ namespace Gisha.Glide.MainMenu.Levels
         public void OnPointerEnter(PointerEventData eventData)
         {
             transform.localScale = Vector3.one * 1.25f;
+            MainMenuManager.Instance.LevelInfoBox.Popup(transform.position, Coords);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             transform.localScale = Vector3.one;
+            MainMenuManager.Instance.LevelInfoBox.Hide();
         }
         #endregion
     }
