@@ -1,4 +1,5 @@
-﻿using Gisha.Glide.Game;
+﻿using Gisha.Glide.AirplaneGeneric.Modules;
+using Gisha.Glide.Game;
 using System;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ namespace Gisha.Glide.AirplaneGeneric
         [Header("Visual")]
         [SerializeField] private GameObject[] engineVisualObjects = default;
 
+        public Module[] modules = new Module[1];
         public event Action<bool> OnCharge;
 
         public bool IsBoostedSpeed { get; private set; } = false;
@@ -33,6 +35,8 @@ namespace Gisha.Glide.AirplaneGeneric
         private void Start()
         {
             ChargeUp();
+
+            modules[0] = new DashModule();
         }
 
         private void Update()
@@ -50,6 +54,9 @@ namespace Gisha.Glide.AirplaneGeneric
 
             if (!InEnoughEnergy)
                 Discharge();
+
+            if (Input.GetKeyDown(KeyCode.E))
+                modules[0].Use(this);
         }
 
         public void Die()
