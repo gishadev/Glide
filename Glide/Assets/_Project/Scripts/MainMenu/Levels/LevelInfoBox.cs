@@ -1,4 +1,4 @@
-﻿using Gisha.Glide.Game;
+﻿using Gisha.Glide.Game.Core;
 using TMPro;
 using UnityEngine;
 

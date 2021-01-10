@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Gisha.Glide
+namespace Gisha.Glide.EditorGeneric
 {
     [CustomEditor(typeof (LevelsMenu))]
     public class LevelsMenuEditor : Editor
