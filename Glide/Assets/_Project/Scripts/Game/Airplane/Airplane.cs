@@ -1,6 +1,7 @@
 ﻿using Gisha.Glide.Game.AirplaneGeneric.Modules;
 using Gisha.Glide.Game.Core;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gisha.Glide.Game.AirplaneGeneric
@@ -28,15 +29,39 @@ namespace Gisha.Glide.Game.AirplaneGeneric
 
         public bool InEnoughEnergy => Energy > 0;
 
+        #region Modules
         Module[] _modules = new Module[1];
+
+        public static event Action<Module> OnAddModule;
+        public static event Action<Module> OnUseModule;
+
         public void AddModule(Module module)
         {
+            OnAddModule(module);
             _modules[0] = module;
-            Debug.Log("New Module was added!");
+
+            Debug.Log("Module added.");
         }
 
-        private void OnEnable() => OnCharge += OnChargeAirplane;
-        private void OnDisable() => OnCharge -= OnChargeAirplane;
+        public void UseModule(Module module)
+        {
+            module.Use(this);
+
+            OnUseModule(module);
+            _modules[0] = null;
+
+            Debug.Log("Module used.");
+        }
+        #endregion
+        private void OnEnable()
+        {
+            OnCharge += OnChargeAirplane;
+        }
+
+        private void OnDisable()
+        {
+            OnCharge -= OnChargeAirplane;
+        }
 
         private void Start()
         {
@@ -60,7 +85,7 @@ namespace Gisha.Glide.Game.AirplaneGeneric
                 Discharge();
 
             if (Input.GetKeyDown(KeyCode.E) && _modules[0] != null)
-                _modules[0].Use(this);
+                UseModule(_modules[0]);
         }
 
         public void Die()

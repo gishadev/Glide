@@ -5,32 +5,20 @@ namespace Gisha.Glide.Game.AirplaneGeneric.Modules
 {
     public class ModuleCollectible : MonoBehaviour
     {
-        [SerializeField] private CollectibleType collectibleType = default;
-
-        private enum CollectibleType
-        {
-            Nothing,
-            DashModule
-        }
+        [SerializeField] private string collectibleModuleTypeName = default;
 
         private void Awake()
         {
-            if (collectibleType == CollectibleType.Nothing) Debug.LogError("collectibleType is not assigned!");
+            if (string.IsNullOrEmpty(collectibleModuleTypeName)) Debug.LogError("collectibleModuleTypeName is not assigned!");
         }
-
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Airplane"))
             {
                 var airplane = other.GetComponentInParent<Airplane>();
-
-                switch (collectibleType)
-                {
-                    case CollectibleType.DashModule:
-                        airplane.AddModule(new DashModule());
-                        break;
-                }
+                var module = ModulesStorage.GetModuleFromTypeName(collectibleModuleTypeName);
+                airplane.AddModule(module);
 
                 Destroy(gameObject);
             }

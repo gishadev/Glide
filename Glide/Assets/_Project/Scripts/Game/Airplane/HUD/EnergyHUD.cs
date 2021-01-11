@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Gisha.Glide.Game.AirplaneGeneric
+namespace Gisha.Glide.Game.AirplaneGeneric.HUD
 {
     public class EnergyHUD : MonoBehaviour
     {

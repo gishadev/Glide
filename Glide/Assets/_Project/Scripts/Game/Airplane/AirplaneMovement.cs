@@ -1,5 +1,4 @@
-﻿using Gisha.Glide.Game.AirplaneGeneric;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gisha.Glide.Game.AirplaneGeneric
 {
