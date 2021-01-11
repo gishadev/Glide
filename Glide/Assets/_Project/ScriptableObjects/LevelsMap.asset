@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f4348b20b43ba441b5d930b2dbd460b, type: 3}
   m_Name: LevelsMap
   m_EditorClassIdentifier: 
-  galaxies: []
+  galaxies:
+  - galaxyName: Start Galaxy
+    worldNames:
+    - Crystal World
+    - Cube World
+    levelsCount: 0500000003000000
