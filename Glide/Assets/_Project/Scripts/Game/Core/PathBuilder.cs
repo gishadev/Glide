@@ -20,10 +20,10 @@ namespace Gisha.Glide.Game.Core
         {
             var map = GetLevelsMapAsset();
 
-            return $"{GalaxiesRelativePath}/" +
-                $"{map.galaxies[coords.GalaxyID].galaxyName}/" +
-                $"{map.galaxies[coords.GalaxyID].worldNames[coords.WorldID]}/" +
-                $"Level {coords.LevelID + 1}";
+            return $"{GalaxiesRelativePath}" +
+                $"/{map.galaxies[coords.GalaxyID].galaxyName}" +
+                $"/{map.galaxies[coords.GalaxyID].worldNames[coords.WorldID]}" +
+                $"/Level {coords.LevelID + 1}";
         }
 
         public static string GetScenePathFromNames(string galaxyName, string worldName, int levelIndex)

@@ -13,10 +13,6 @@ namespace Gisha.Glide.MainMenu
         [SerializeField] private LevelInfoBox levelInfoBox = default;
         public LevelInfoBox LevelInfoBox => levelInfoBox;
 
-        [Header("Menus")]
-        [SerializeField] private GameObject modulesMenu = default;
-
-
         private void Awake()
         {
             Instance = this;
@@ -27,16 +23,6 @@ namespace Gisha.Glide.MainMenu
         private void Start()
         {
             Cursor.lockState = CursorLockMode.None;
-        }
-
-        public void OnClick_OpenModulesMenu()
-        {
-            modulesMenu.SetActive(true);
-        }
-
-        public void OnClick_ReturnToMainMenu()
-        {
-            modulesMenu.SetActive(false);
         }
     }
 }

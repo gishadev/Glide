@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
 using Gisha.Glide.Game.Core;
 
 namespace Gisha.Glide.MainMenu.Levels
@@ -71,6 +70,7 @@ namespace Gisha.Glide.MainMenu.Levels
             LevelsManager.UpdateLevelsMap(galaxyTrans, levelsMap);
             LevelsManager.CreateLevelsData(levelsMap);
             UpdateUI();
+            Debug.Log("<color=green>Levels data reset</color>");
         }
 
         private void CreateLevelsUIFromScene()
