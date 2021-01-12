@@ -1,4 +1,5 @@
 ﻿using Gisha.Glide.Game.AirplaneGeneric.Modules;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gisha.Glide.Game.AirplaneGeneric.HUD
@@ -9,28 +10,17 @@ namespace Gisha.Glide.Game.AirplaneGeneric.HUD
         [SerializeField] private Transform modulesParent = default;
         [SerializeField] private GameObject moduleUIPrefab = default;
 
-        GameObject _createdModuleUI;
+        List<GameObject> _modulesUI = new List<GameObject>();
 
-        private void OnEnable()
+        public void AddModuleUI(Module module)
         {
-            Airplane.OnAddModule += AddModuleUI;
-            Airplane.OnUseModule += RemoveModuleUI;
+            _modulesUI.Add(Instantiate(moduleUIPrefab, modulesParent));
         }
 
-        private void OnDisable()
+        public void RemoveModuleUI(int index)
         {
-            Airplane.OnAddModule -= AddModuleUI;
-            Airplane.OnUseModule -= RemoveModuleUI;
-        }
-
-        private void AddModuleUI(Module module)
-        {
-            _createdModuleUI = Instantiate(moduleUIPrefab, modulesParent);
-        }
-
-        private void RemoveModuleUI(Module module)
-        {
-            Destroy(_createdModuleUI);
+            Destroy(_modulesUI[index]);
+            _modulesUI.RemoveAt(index);
         }
     }
 }
