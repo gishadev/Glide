@@ -10,16 +10,67 @@ namespace Gisha.Glide.Game.AirplaneGeneric
     [RequireComponent(typeof(AirplaneMovement))]
     public class Airplane : MonoBehaviour
     {
-        [Header("Values")]
-        [SerializeField] private float defaultWasteOfEnergyInSeconds = 15f;
-        [SerializeField] private float boostedWasteOfEnergyInSeconds = 10f;
+        [Header("General")]
+        public AirplaneChargeController chargeController;
+        public AirplaneModularSystem modularSystem;
 
         [Header("Visual")]
         [SerializeField] private GameObject[] engineVisualObjects = default;
 
-        public event Action<bool> OnCharge;
-
         public bool IsBoostedSpeed { get; private set; } = false;
+
+        private void Start()
+        {
+            chargeController.ChargeUp();
+        }
+
+        private void OnEnable() => chargeController.OnCharge += OnChargeAirplane;
+        private void OnDisable() => chargeController.OnCharge -= OnChargeAirplane;
+
+        private void Update()
+        {
+            if (!chargeController.InEnoughEnergy)
+                return;
+
+            if (Input.GetKey(KeyCode.LeftControl))
+                IsBoostedSpeed = true;
+            else
+                IsBoostedSpeed = false;
+
+            if (Input.GetKeyDown(KeyCode.Space) && modularSystem.ModuleExists)
+                modularSystem.UseModule(this, 0);
+
+            chargeController.EnergyWaste(IsBoostedSpeed);
+        }
+
+        public void OnChargeAirplane(bool status)
+        {
+            // Activate/Deactivate trails.
+            foreach (var obj in engineVisualObjects)
+                obj.SetActive(status);
+        }
+
+        public void Die()
+        {
+            Debug.Log("<color=purple>Airplane was destroyed!</color>");
+            SceneLoader.ReloadLevel();
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.collider.CompareTag("Obstacle"))
+                Die();
+        }
+    }
+
+    [Serializable]
+    public class AirplaneChargeController
+    {
+        [Header("Charge Values")]
+        [SerializeField] private float defaultWasteOfEnergyInSeconds = 15f;
+        [SerializeField] private float boostedWasteOfEnergyInSeconds = 10f;
+
+        public event Action<bool> OnCharge;
 
         public float Energy
         {
@@ -30,7 +81,36 @@ namespace Gisha.Glide.Game.AirplaneGeneric
 
         public bool InEnoughEnergy => Energy > 0;
 
-        #region Modules
+        public void ChargeUp()
+        {
+            Energy = 1f;
+            OnCharge(true);
+        }
+
+        public void Discharge()
+        {
+            Energy = 0f;
+            OnCharge(false);
+        }
+
+        public void EnergyWaste(bool isBoosted)
+        {
+            if (!InEnoughEnergy)
+                return;
+
+            var wasteOfEnergy = isBoosted ? boostedWasteOfEnergyInSeconds : defaultWasteOfEnergyInSeconds;
+            Energy -= Time.deltaTime / (wasteOfEnergy + 0.001f);
+
+            if (!InEnoughEnergy)
+                Discharge();
+        }
+    }
+
+    [Serializable]
+    public class AirplaneModularSystem
+    {
+        public bool ModuleExists => _modules.Count > 0;
+
         List<Module> _modules = new List<Module>();
 
         public void AddModule(Module module)
@@ -41,72 +121,13 @@ namespace Gisha.Glide.Game.AirplaneGeneric
             Debug.Log("Module added.");
         }
 
-        public void UseModule(int index)
+        public void UseModule(Airplane airplane, int index)
         {
-            _modules[index].Use(this);
+            _modules[index].Use(airplane);
             _modules.RemoveAt(index);
             HUDManager.Instance.ModulesHUD.RemoveModuleUI(index);
 
             Debug.Log("Module used.");
-        }
-        #endregion
-        private void OnEnable()
-        {
-            OnCharge += OnChargeAirplane;
-        }
-
-        private void OnDisable()
-        {
-            OnCharge -= OnChargeAirplane;
-        }
-
-        private void Start()
-        {
-            ChargeUp();
-        }
-
-        private void Update()
-        {
-            if (!InEnoughEnergy)
-                return;
-
-            if (Input.GetKey(KeyCode.LeftControl))
-                IsBoostedSpeed = true;
-            else
-                IsBoostedSpeed = false;
-
-            var wasteOfEnergy = IsBoostedSpeed ? boostedWasteOfEnergyInSeconds : defaultWasteOfEnergyInSeconds;
-            Energy -= Time.deltaTime / (wasteOfEnergy + 0.001f);
-
-            if (!InEnoughEnergy)
-                Discharge();
-
-            if (Input.GetKeyDown(KeyCode.E) && _modules.Count > 0)
-                UseModule(0);
-        }
-
-        public void Die()
-        {
-            Debug.Log("<color=purple>Airplane was destroyed!</color>");
-            SceneLoader.ReloadLevel();
-        }
-
-        public void ChargeUp() => OnCharge(true);
-        public void Discharge() => OnCharge(false);
-
-        public void OnChargeAirplane(bool status)
-        {
-            Energy = status ? 1f : 0f;
-
-            // Activate/Deactivate trails.
-            foreach (var obj in engineVisualObjects)
-                obj.SetActive(status);
-        }
-
-        private void OnCollisionEnter(Collision collision)
-        {
-            if (collision.collider.CompareTag("Obstacle"))
-                Die();
         }
     }
 }

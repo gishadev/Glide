@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gisha.Glide.Game.AirplaneGeneric.Modules
 {
@@ -20,7 +19,7 @@ namespace Gisha.Glide.Game.AirplaneGeneric.Modules
             {
                 var airplane = other.GetComponentInParent<Airplane>();
                 var module = ModulesStorage.GetModuleFromTypeName(collectibleModuleTypeName);
-                airplane.AddModule(module);
+                airplane.modularSystem.AddModule(module);
 
                 Destroy(gameObject);
                 lastTime = Time.time;

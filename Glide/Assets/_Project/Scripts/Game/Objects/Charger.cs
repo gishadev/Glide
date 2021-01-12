@@ -14,7 +14,7 @@ namespace Gisha.Glide.Game.Objects
 
         public override void OnTriggerSignal(Collider other)
         {
-            other.GetComponentInParent<Airplane>().ChargeUp();
+            other.GetComponentInParent<Airplane>().chargeController.ChargeUp();
             chargingGate.SetActive(false);
         }
 

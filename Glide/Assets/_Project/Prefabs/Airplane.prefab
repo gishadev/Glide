@@ -9851,8 +9851,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b96b5500ccf3d8f4aad19752f941c2db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultWasteOfEnergyInSeconds: 18
-  boostedWasteOfEnergyInSeconds: 9
+  chargeController:
+    defaultWasteOfEnergyInSeconds: 18
+    boostedWasteOfEnergyInSeconds: 9
   engineVisualObjects:
   - {fileID: 8306737104666476483}
   - {fileID: 4220699834998575195}

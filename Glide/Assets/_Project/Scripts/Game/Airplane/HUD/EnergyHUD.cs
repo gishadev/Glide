@@ -9,8 +9,8 @@ namespace Gisha.Glide.Game.AirplaneGeneric.HUD
 
         private void Update()
         {
-            if (airplane.InEnoughEnergy)
-                energyFillTrans.localScale = new Vector3(airplane.Energy, 1f, 1f);
+            if (airplane.chargeController.InEnoughEnergy)
+                energyFillTrans.localScale = new Vector3(airplane.chargeController.Energy, 1f, 1f);
         }
     }
 }

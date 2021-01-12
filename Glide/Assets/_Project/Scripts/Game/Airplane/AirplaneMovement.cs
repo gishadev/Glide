@@ -53,8 +53,8 @@ namespace Gisha.Glide.Game.AirplaneGeneric
             GetRigidbodyParams();
         }
 
-        private void OnEnable() => _airplane.OnCharge += ChangeModeOnCharge;
-        private void OnDisable() => _airplane.OnCharge -= ChangeModeOnCharge;
+        private void OnEnable() => _airplane.chargeController.OnCharge += ChangeModeOnCharge;
+        private void OnDisable() => _airplane.chargeController.OnCharge -= ChangeModeOnCharge;
 
         private void Update()
         {
