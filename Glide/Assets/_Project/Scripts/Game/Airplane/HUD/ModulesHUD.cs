@@ -10,16 +10,18 @@ namespace Gisha.Glide.Game.AirplaneGeneric.HUD
         [SerializeField] private Transform modulesParent = default;
         [SerializeField] private GameObject moduleUIPrefab = default;
 
-        List<GameObject> _modulesUI = new List<GameObject>();
+        List<ModuleUI> _modulesUI = new List<ModuleUI>();
 
         public void AddModuleUI(Module module)
         {
-            _modulesUI.Add(Instantiate(moduleUIPrefab, modulesParent));
+            var moduleUI = Instantiate(moduleUIPrefab, modulesParent).GetComponent<ModuleUI>();
+            moduleUI.Initialize(module.GetModuleUIData().IconSprite);
+            _modulesUI.Add(moduleUI);
         }
 
         public void RemoveModuleUI(int index)
         {
-            Destroy(_modulesUI[index]);
+            Destroy(_modulesUI[index].gameObject);
             _modulesUI.RemoveAt(index);
         }
     }

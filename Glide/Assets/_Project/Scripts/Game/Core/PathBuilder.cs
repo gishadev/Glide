@@ -12,9 +12,11 @@ namespace Gisha.Glide.Game.Core
 
         // Modules.
         public const string ModulesDataRelativePath = "Assets/_Project/ScriptableObjects/ModulesData.asset";
+        public const string ModulesUIDataRelativePath = "Assets/_Project/ScriptableObjects/ModulesUI";
 
         public static LevelsMap GetLevelsMapAsset() => AssetDatabase.LoadAssetAtPath(LevelsMapRelativePath, typeof(LevelsMap)) as LevelsMap;
         public static ModulesData GetModulesData() => AssetDatabase.LoadAssetAtPath(ModulesDataRelativePath, typeof(ModulesData)) as ModulesData;
+        public static ModuleUIData GetModuleUIData(string typeName) => AssetDatabase.LoadAssetAtPath($"{ModulesUIDataRelativePath}/{typeName}.asset", typeof(ModuleUIData)) as ModuleUIData;
 
         public static string GetScenePathFromCoords(LevelCoords coords)
         {
