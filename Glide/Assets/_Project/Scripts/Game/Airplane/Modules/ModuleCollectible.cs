@@ -12,15 +12,18 @@ namespace Gisha.Glide.Game.AirplaneGeneric.Modules
             if (string.IsNullOrEmpty(collectibleModuleTypeName)) Debug.LogError("collectibleModuleTypeName is not assigned!");
         }
 
+        float lastTime = 0;
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Airplane"))
+            var time = Time.time;
+            if (other.CompareTag("Airplane") && (time - lastTime) > 0.25f)
             {
                 var airplane = other.GetComponentInParent<Airplane>();
                 var module = ModulesStorage.GetModuleFromTypeName(collectibleModuleTypeName);
                 airplane.AddModule(module);
 
                 Destroy(gameObject);
+                lastTime = Time.time;
             }
         }
     }
