@@ -13,9 +13,10 @@ namespace Gisha.Glide.Game.Core
         #region LevelsData
         public static void SaveLevelsData(LevelsData levelsData)
         {
-            var dictionary = new Dictionary<int[], int>();
+            var dictionary = new Dictionary<int[], LevelData>();
             var levelCoords = levelsData.allLevels.Keys.ToArray();
             var levelStates = levelsData.allLevels.Values.Select(x => x.LevelState).ToArray();
+            var levelScores = levelsData.allLevels.Values.Select(x => x.BestScore).ToArray();
 
             for (int i = 0; i < levelsData.allLevels.Count; i++)
             {
@@ -24,12 +25,14 @@ namespace Gisha.Glide.Game.Core
                     levelCoords[i].WorldID,
                     levelCoords[i].LevelID};
 
-                int state = (int)levelStates[i];
+                int levelState = (int)levelStates[i];
+                int bestScore = levelScores[i];
 
-                dictionary.Add(coords, state);
+                LevelData level = new LevelData(levelState, bestScore);
+                dictionary.Add(coords, level);
             }
 
-            var data = DictionarySerializer<int[], int>.Save(dictionary);
+            var data = DictionarySerializer<int[], LevelData>.Save(dictionary);
             File.WriteAllBytes(LevelsDataPath, data);
         }
 
@@ -39,7 +42,7 @@ namespace Gisha.Glide.Game.Core
             {
                 var bytes = File.ReadAllBytes(LevelsDataPath);
 
-                var dictionary = DictionarySerializer<int[], int>.Load(bytes);
+                var dictionary = DictionarySerializer<int[], LevelData>.Load(bytes);
                 var keys = dictionary.Keys.ToArray();
                 var values = dictionary.Values.ToArray();
 
@@ -47,7 +50,7 @@ namespace Gisha.Glide.Game.Core
                 for (int i = 0; i < dictionary.Count; i++)
                 {
                     var coords = new LevelCoords(keys[i][0], keys[i][1], keys[i][2]);
-                    var level = new LevelData(values[i]);
+                    var level = values[i];
 
                     allLevels.Add(coords, level);
                 }

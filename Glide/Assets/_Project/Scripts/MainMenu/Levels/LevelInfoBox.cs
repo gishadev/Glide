@@ -16,6 +16,7 @@ namespace Gisha.Glide.MainMenu.Levels
         [SerializeField] private TMP_Text worldText = default;
         [SerializeField] private TMP_Text bestScoreText = default;
 
+        LevelsData _levelsData;
 
         private void Awake()
         {
@@ -25,13 +26,18 @@ namespace Gisha.Glide.MainMenu.Levels
             if (levelText == null || worldText == null || bestScoreText == null) Debug.LogError("Content is not assigned!");
         }
 
+        private void Start()
+        {
+            _levelsData = SaveSystem.LoadLevelsData();
+        }
+
         public void Popup(Vector2 screenPosition, LevelCoords coords)
         {
             transform.position = screenPosition + popupOffset;
 
             levelText.text = $"Level {coords.LevelID + 1}";
             worldText.text = levelsMap.galaxies[coords.GalaxyID].worldNames[coords.WorldID];
-            bestScoreText.text = "228";
+            bestScoreText.text = _levelsData.allLevels[coords].BestScore.ToString();
 
             body.SetActive(true);
         }

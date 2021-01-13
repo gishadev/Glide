@@ -24,7 +24,7 @@ namespace Gisha.Glide.Game.Core
                         else
                             levelState = w == 0 && l == 0 ? LevelState.Next : LevelState.Hidden;
 
-                        levels.Add(new LevelCoords(g, w, l), new LevelData((int)levelState));
+                        levels.Add(new LevelCoords(g, w, l), new LevelData((int)levelState, 0));
                     }
 
             var data = new LevelsData(levels);

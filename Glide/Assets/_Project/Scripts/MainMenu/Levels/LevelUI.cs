@@ -8,6 +8,7 @@ namespace Gisha.Glide.MainMenu.Levels
     public class LevelUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
     {
         public LevelCoords Coords { get; set; }
+        public int Score { get; set; }
 
         Image _image;
 

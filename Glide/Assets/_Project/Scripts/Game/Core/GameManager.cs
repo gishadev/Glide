@@ -35,19 +35,24 @@ namespace Gisha.Glide.Game.Core
         public static void OnPassLevel()
         {
             var data = SaveSystem.LoadLevelsData();
-            data.allLevels[CoordsManager.CurrentCoords].SetLevelState(LevelState.Passed);
+    
+            var currentLevel = data.allLevels[CoordsManager.CurrentCoords];
+            var nextLevel = data.allLevels[CoordsManager.GetNextCoords()];
 
-            var nextCoords = CoordsManager.GetNextCoords();
+            currentLevel.SetLevelState(LevelState.Passed);
 
-            switch (data.allLevels[nextCoords].LevelState)
+            switch (nextLevel.LevelState)
             {
                 case LevelState.Nonexistent:
-                    Debug.LogError($"Level at coords {nextCoords.DebugText} is Nonexistent!");
+                    Debug.LogError($"Level at coords {CoordsManager.GetNextCoords().DebugText} is Nonexistent!");
                     return;
                 case LevelState.Hidden:
-                    data.allLevels[nextCoords].SetLevelState(LevelState.Next);
+                    nextLevel.SetLevelState(LevelState.Next);
                     break;
             }
+
+            if (currentLevel.BestScore < ScoreProcessor.Score)
+                currentLevel.SetBestScore(ScoreProcessor.Score);
 
             SaveSystem.SaveLevelsData(data);
             SceneLoader.LoadNextLevel();
