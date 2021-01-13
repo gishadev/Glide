@@ -6,11 +6,14 @@ namespace Gisha.Glide.Game.HUD
     {
         #region Singleton
         public static HUDManager Instance { get; private set; }
+        #endregion
 
         [Header("Components")]
         [SerializeField] private ModulesHUD modulesHUD = default;
+        [SerializeField] private ScoreHUD scoreHUD = default;
+
         public ModulesHUD ModulesHUD => modulesHUD;
-        #endregion
+        public ScoreHUD ScoreHUD => scoreHUD;
 
         private void Awake()
         {
@@ -18,6 +21,8 @@ namespace Gisha.Glide.Game.HUD
 
             if (modulesHUD == null)
                 Debug.LogError("modulesHUD is not assigned");
+            if (scoreHUD == null)
+                Debug.LogError("scoreHUD is not assigned");
         }
     }
 }

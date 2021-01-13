@@ -7,6 +7,8 @@ namespace Gisha.Glide.Game.AirplaneGeneric.Modules
     {
         public override void Use(Airplane airplane)
         {
+            base.Use(airplane);
+
             var data = GetModulesData();
 
             var ray = new Ray(airplane.transform.position, airplane.transform.forward);

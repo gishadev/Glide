@@ -1,4 +1,5 @@
 ﻿using Gisha.Glide.Game.AirplaneGeneric;
+using Gisha.Glide.Game.Core;
 using UnityEngine;
 
 namespace Gisha.Glide.Game.Objects
@@ -15,6 +16,7 @@ namespace Gisha.Glide.Game.Objects
         public override void OnTriggerSignal(Collider other)
         {
             other.GetComponentInParent<Airplane>().chargeController.ChargeUp();
+            ScoreProcessor.AddScore(50);
             chargingGate.SetActive(false);
         }
 

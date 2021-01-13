@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gisha.Glide.Game.Core;
+using UnityEngine;
 
 namespace Gisha.Glide.Game.AirplaneGeneric.Modules
 {
@@ -21,7 +22,9 @@ namespace Gisha.Glide.Game.AirplaneGeneric.Modules
                 var module = ModulesStorage.GetModuleFromTypeName(collectibleModuleTypeName);
                 airplane.modularSystem.AddModule(module);
 
+                ScoreProcessor.AddScore(25);
                 Destroy(gameObject);
+
                 lastTime = Time.time;
             }
         }

@@ -4,7 +4,11 @@ namespace Gisha.Glide.Game.AirplaneGeneric.Modules
 {
     public abstract class Module
     {
-        public abstract void Use(Airplane airplane);
+        public virtual void Use(Airplane airplane)
+        {
+            ScoreProcessor.AddScore(10);
+        }
+
         public ModulesData GetModulesData() => PathBuilder.GetModulesData();
 
         public ModuleUIData GetModuleUIData() => PathBuilder.GetModuleUIData(this.GetType().Name);
