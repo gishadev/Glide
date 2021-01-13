@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Gisha.Glide.Game.AirplaneGeneric.HUD
+namespace Gisha.Glide.Game.HUD
 {
     public class ModulesHUD : MonoBehaviour
     {

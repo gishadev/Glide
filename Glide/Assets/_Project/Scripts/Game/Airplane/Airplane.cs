@@ -1,6 +1,6 @@
-﻿using Gisha.Glide.Game.AirplaneGeneric.HUD;
-using Gisha.Glide.Game.AirplaneGeneric.Modules;
+﻿using Gisha.Glide.Game.AirplaneGeneric.Modules;
 using Gisha.Glide.Game.Core;
+using Gisha.Glide.Game.HUD;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

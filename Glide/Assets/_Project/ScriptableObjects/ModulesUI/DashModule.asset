@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 0bbe563b5748fc146a3f1240e3211796, type: 3}
   m_Name: DashModule
-  m_EditorClassIdentifier: Assembly-CSharp:Gisha.Glide.Game.AirplaneGeneric.Modules:ModuleUIData
+  m_EditorClassIdentifier: 
   iconSprite: {fileID: 21300000, guid: 22e63b6cbf1ecbf479927a8dabe8a128, type: 3}
