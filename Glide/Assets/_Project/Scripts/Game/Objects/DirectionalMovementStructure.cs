@@ -28,6 +28,9 @@ namespace Gisha.Glide.Game.Objects
                 _direction = Vector3.right;
             if (movementDirection == MovementDirection.Vertical)
                 _direction = Vector3.up;
+
+            if (Random.Range(0, 100) <= 50)
+                SetOppositeDirection(_direction);
         }
 
         private void Update()
