@@ -26,10 +26,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078451713}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.262, y: 0, z: -2.619995}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 6297738357236979053}
+  m_Father: {fileID: 4220699834998575192}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &1078451716
@@ -4838,11 +4838,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484464026}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.262, y: 0, z: -2.619995}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 6297738357236979053}
-  m_RootOrder: 1
+  m_Father: {fileID: 4220699834439000500}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &1484464029
 ParticleSystem:
@@ -9635,7 +9635,7 @@ GameObject:
   - component: {fileID: 3473016946460907428}
   - component: {fileID: 1178502959031465809}
   m_Layer: 0
-  m_Name: Right Air
+  m_Name: Right Air Trail
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -9649,7 +9649,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473385005676428235}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.557, y: -0.437, z: -1.989}
+  m_LocalPosition: {x: 3.266, y: -0.118, z: -2.281}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4220699833999607146}
@@ -9763,7 +9763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4220699833999607146}
   m_Layer: 0
-  m_Name: Trails
+  m_Name: Effects
   m_TagString: Airplane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9819,7 +9819,6 @@ Transform:
   m_Children:
   - {fileID: 4220699834861823202}
   - {fileID: 4220699833999607146}
-  - {fileID: 6297738357236979053}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9855,7 +9854,6 @@ MonoBehaviour:
     defaultWasteOfEnergyInSeconds: 18
     boostedWasteOfEnergyInSeconds: 9
   engineVisualObjects:
-  - {fileID: 8306737104666476483}
   - {fileID: 4220699834998575195}
   - {fileID: 4220699834439000503}
 --- !u!114 &4220699834052348182
@@ -9893,7 +9891,7 @@ GameObject:
   - component: {fileID: 4220699834439000500}
   - component: {fileID: 4220699834439000501}
   m_Layer: 0
-  m_Name: Left Engine
+  m_Name: Left Engine Trail
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -9907,9 +9905,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4220699834439000503}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.25, y: 0, z: -2.687}
+  m_LocalPosition: {x: -0.615, y: 0, z: -2.155}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1484464027}
   m_Father: {fileID: 4220699833999607146}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10024,6 +10023,7 @@ GameObject:
   - component: {fileID: 4220699834861823200}
   - component: {fileID: 4220699834861823214}
   - component: {fileID: 4220699834861823203}
+  - component: {fileID: 1892474017}
   m_Layer: 0
   m_Name: Model
   m_TagString: Airplane
@@ -10052,7 +10052,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4220699834861823205}
-  m_Mesh: {fileID: -462981019419857548, guid: a5e55c324f8be214ab85ac6491dd11cc, type: 3}
+  m_Mesh: {fileID: -5140985471638211964, guid: 58c00d4c0f2757c47a57a15228a6a67c, type: 3}
 --- !u!23 &4220699834861823200
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10073,8 +10073,8 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 9740cf91f51eabc4a8eeacdd0db882c8, type: 2}
-  - {fileID: 2100000, guid: 157464e677dba704d962f6bb7e6b0c0b, type: 2}
   - {fileID: 2100000, guid: 7caebb5d370b6044d95ebb391b617eb0, type: 2}
+  - {fileID: 2100000, guid: 157464e677dba704d962f6bb7e6b0c0b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10107,8 +10107,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8.185684, y: 0.17, z: 2.2415037}
-  m_Center: {x: 0, y: -0.25, z: -0.82}
+  m_Size: {x: 6.7152267, y: 0.17000002, z: 2.9504395}
+  m_Center: {x: 0, y: -0.120000005, z: -0.8220215}
 --- !u!136 &4220699834861823203
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10119,10 +10119,23 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.63
+  m_Radius: 0.44818094
   m_Height: 7.63
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0.5457113}
+  m_Center: {x: 0, y: 0, z: 1.39}
+--- !u!65 &1892474017
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4220699834861823205}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.27411595, y: 2.141287, z: 0.92419434}
+  m_Center: {x: 0, y: 0.7356435, z: -2.1732788}
 --- !u!1 &4220699834998575195
 GameObject:
   m_ObjectHideFlags: 0
@@ -10134,7 +10147,7 @@ GameObject:
   - component: {fileID: 4220699834998575192}
   - component: {fileID: 4220699834998575193}
   m_Layer: 0
-  m_Name: Right Engine
+  m_Name: Right Engine Trail
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -10148,9 +10161,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4220699834998575195}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.25, y: 0, z: -2.687}
+  m_LocalPosition: {x: 0.615, y: 0, z: -2.155}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1078451714}
   m_Father: {fileID: 4220699833999607146}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10263,7 +10277,7 @@ GameObject:
   - component: {fileID: 4283896675504666324}
   - component: {fileID: 204770638298219909}
   m_Layer: 0
-  m_Name: Left Air
+  m_Name: Left Air Trail
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -10277,7 +10291,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6544474159731135387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.557, y: -0.437, z: -1.989}
+  m_LocalPosition: {x: -3.266, y: -0.118, z: -2.281}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4220699833999607146}
@@ -10381,35 +10395,3 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!1 &8306737104666476483
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6297738357236979053}
-  m_Layer: 0
-  m_Name: Particles
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6297738357236979053
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8306737104666476483}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1078451714}
-  - {fileID: 1484464027}
-  m_Father: {fileID: 4220699834052348178}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
