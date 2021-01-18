@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using Cinemachine;
-using Gisha.Glide.Game.AirplaneGeneric;
 using System.Collections;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 namespace Gisha.Glide.Game.Effects
 {
+    #region EffectsManager
     public class EffectsManager : MonoBehaviour
     {
         #region Singleton
@@ -15,15 +17,20 @@ namespace Gisha.Glide.Game.Effects
         [SerializeField] private CinemachineVirtualCamera virtualCamera = default;
         [SerializeField] private CameraEffectData cameraEffectData = default;
 
-
+        [Header("Post-Processing Effect")]
+        [SerializeField] private Volume volume;
+        [SerializeField] private PostProcessingEffectData postProcessingEffectData = default;
         private void Awake()
         {
             Instance = this;
 
             CameraEffect.Initialize(virtualCamera, cameraEffectData);
+            PostProcessingEffect.Initialize(volume, postProcessingEffectData);
         }
     }
-
+    #endregion
+    //-------------------------------------------------------------------------
+    #region CameraEffect
     public static class CameraEffect
     {
         public enum CameraEffectState
@@ -81,4 +88,38 @@ namespace Gisha.Glide.Game.Effects
             _virtualCamera.m_Lens.FieldOfView = _FOV;
         }
     }
+    #endregion
+    //-------------------------------------------------------------------------
+    #region PostProcessingEffect
+    public static class PostProcessingEffect
+    {
+        static PostProcessingEffectData _postProcessingEffectData;
+        static Volume _volume;
+
+        static LensDistortion _ld = null;
+        static ChromaticAberration _ca = null;
+
+        public static void Initialize(Volume volume, PostProcessingEffectData postProcessingEffectData)
+        {
+            _postProcessingEffectData = postProcessingEffectData;
+            _volume = volume;
+
+            volume.sharedProfile.TryGet(out _ld);
+            volume.sharedProfile.TryGet(out _ca);
+
+            SetChromaticAberration(0f);
+            SetLensDistortion(0f);
+        }
+
+        public static void SetChromaticAberration(float intensity)
+        {
+            _ca.intensity.value = Mathf.Clamp(intensity, _postProcessingEffectData.MinCA, _postProcessingEffectData.MaxCA);
+        }
+
+        public static void SetLensDistortion(float intensity)
+        {
+            _ld.intensity.value = Mathf.Clamp(intensity, _postProcessingEffectData.MinLD, _postProcessingEffectData.MaxLD);
+        }
+    }
+    #endregion
 }

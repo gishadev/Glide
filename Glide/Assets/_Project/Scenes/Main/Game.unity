@@ -6007,6 +6007,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 1255132765}
   cameraEffectData: {fileID: 11400000, guid: 06345691cf81dd746880dcbd351f66ea, type: 2}
+  volume: {fileID: 121399764}
+  postProcessingEffectData: {fileID: 11400000, guid: 234b25ddbb6a98a429823f029d5afb7f, type: 2}
 --- !u!4 &1601686554
 Transform:
   m_ObjectHideFlags: 0

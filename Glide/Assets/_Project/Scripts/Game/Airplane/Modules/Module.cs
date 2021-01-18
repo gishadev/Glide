@@ -1,4 +1,5 @@
 ﻿using Gisha.Glide.Game.Core;
+using Gisha.Glide.Game.Effects;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -50,11 +51,18 @@ namespace Gisha.Glide.Game.AirplaneGeneric.Modules
             {
                 var step = data.DashSpeed * Time.fixedDeltaTime;
                 path += step;
-                rb.MovePosition(rb.position + airplane.transform.forward * step);
+                rb.position += airplane.transform.forward * step;
+
+                var intensity = 1f - (path / distance);
+                PostProcessingEffect.SetChromaticAberration(intensity);
+                PostProcessingEffect.SetLensDistortion(-intensity);
 
                 yield return null;
             }
+
             airplane.EnginePushing = true;
+            PostProcessingEffect.SetChromaticAberration(0f);
+            PostProcessingEffect.SetLensDistortion(0f);
         }
     }
     #endregion

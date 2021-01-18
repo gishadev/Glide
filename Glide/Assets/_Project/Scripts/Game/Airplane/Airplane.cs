@@ -42,7 +42,7 @@ namespace Gisha.Glide.Game.AirplaneGeneric
 
         private void Update()
         {
-            if (!chargeController.InEnoughEnergy && !EnginePushing)
+            if (!chargeController.InEnoughEnergy || !EnginePushing)
                 return;
 
             if (Input.GetKey(KeyCode.LeftControl))
