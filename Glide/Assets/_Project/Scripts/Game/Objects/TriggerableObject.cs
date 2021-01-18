@@ -14,7 +14,7 @@ namespace Gisha.Glide.Game.Objects
 
         public abstract void OnTriggerSignal(Collider other);
 
-        private void Trigger(Collider other)
+        public void Trigger(Collider other)
         {
             IsTriggered = true;
             OnTriggerSignal(other);

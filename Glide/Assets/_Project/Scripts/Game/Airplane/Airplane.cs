@@ -1,5 +1,6 @@
 ﻿using Gisha.Glide.Game.AirplaneGeneric.Modules;
 using Gisha.Glide.Game.Core;
+using Gisha.Glide.Game.Effects;
 using Gisha.Glide.Game.HUD;
 using System;
 using System.Collections.Generic;
@@ -17,25 +18,43 @@ namespace Gisha.Glide.Game.AirplaneGeneric
         [Header("Visual")]
         [SerializeField] private GameObject[] engineVisualObjects = default;
 
+        private event Action<bool> BoostModeChanged;
+
         public bool IsBoostedSpeed { get; private set; } = false;
+        public bool EnginePushing { get; set; } = true;
 
         private void Start()
         {
             chargeController.ChargeUp();
         }
 
-        private void OnEnable() => chargeController.OnCharge += OnChargeAirplane;
-        private void OnDisable() => chargeController.OnCharge -= OnChargeAirplane;
+        private void OnEnable()
+        {
+            chargeController.Charged += OnChargeAirplane;
+            BoostModeChanged += OnChangeBoostMode;
+        }
+
+        private void OnDisable()
+        {
+            chargeController.Charged -= OnChargeAirplane;
+            BoostModeChanged -= OnChangeBoostMode;
+        }
 
         private void Update()
         {
-            if (!chargeController.InEnoughEnergy)
+            if (!chargeController.InEnoughEnergy && !EnginePushing)
                 return;
 
             if (Input.GetKey(KeyCode.LeftControl))
-                IsBoostedSpeed = true;
+            {
+                if (!IsBoostedSpeed)
+                    BoostModeChanged(true);
+            }
             else
-                IsBoostedSpeed = false;
+            {
+                if (IsBoostedSpeed)
+                    BoostModeChanged(false);
+            }
 
             if (Input.GetKeyDown(KeyCode.Space) && modularSystem.ModuleExists)
                 modularSystem.UseModule(this, 0);
@@ -48,6 +67,16 @@ namespace Gisha.Glide.Game.AirplaneGeneric
             // Activate/Deactivate trails.
             foreach (var obj in engineVisualObjects)
                 obj.SetActive(status);
+        }
+
+        private void OnChangeBoostMode(bool isBoosted)
+        {
+            IsBoostedSpeed = isBoosted;
+
+            if (IsBoostedSpeed)
+                CameraEffect.ChangeFOV(CameraEffect.CameraEffectState.Boosted);
+            else
+                CameraEffect.ChangeFOV(CameraEffect.CameraEffectState.Default);
         }
 
         public void Die()
@@ -70,7 +99,7 @@ namespace Gisha.Glide.Game.AirplaneGeneric
         [SerializeField] private float defaultWasteOfEnergyInSeconds = 15f;
         [SerializeField] private float boostedWasteOfEnergyInSeconds = 10f;
 
-        public event Action<bool> OnCharge;
+        public event Action<bool> Charged;
 
         public float Energy
         {
@@ -84,13 +113,13 @@ namespace Gisha.Glide.Game.AirplaneGeneric
         public void ChargeUp()
         {
             Energy = 1f;
-            OnCharge(true);
+            Charged(true);
         }
 
         public void Discharge()
         {
             Energy = 0f;
-            OnCharge(false);
+            Charged(false);
         }
 
         public void EnergyWaste(bool isBoosted)

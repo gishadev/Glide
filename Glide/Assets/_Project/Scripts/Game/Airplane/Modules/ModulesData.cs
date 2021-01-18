@@ -7,8 +7,10 @@ namespace Gisha.Glide.Game.AirplaneGeneric.Modules
     {
         [Header("Dash")]
         [SerializeField] private float dashDistance = default;
+        [SerializeField] private float dashSpeed = default;
 
         public float DashDistance => dashDistance;
+        public float DashSpeed => dashSpeed;
 
     }
 }

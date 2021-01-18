@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33ae4555d6998f740998e3176555c425, type: 3}
-  m_Name: ModulesData
+  m_Script: {fileID: 11500000, guid: 112c6148bc221154b9df6140d24eaba7, type: 3}
+  m_Name: CameraEffectData
   m_EditorClassIdentifier: 
-  dashDistance: 900
-  dashSpeed: 1500
+  changingSpeed: 5
+  defaultFOV: 65
+  boostFOV: 80
+  dashFOV: 85

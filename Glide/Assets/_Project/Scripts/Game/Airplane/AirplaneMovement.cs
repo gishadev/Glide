@@ -53,8 +53,8 @@ namespace Gisha.Glide.Game.AirplaneGeneric
             GetRigidbodyParams();
         }
 
-        private void OnEnable() => _airplane.chargeController.OnCharge += ChangeModeOnCharge;
-        private void OnDisable() => _airplane.chargeController.OnCharge -= ChangeModeOnCharge;
+        private void OnEnable() => _airplane.chargeController.Charged += ChangeModeOnCharge;
+        private void OnDisable() => _airplane.chargeController.Charged -= ChangeModeOnCharge;
 
         private void Update()
         {
@@ -94,7 +94,7 @@ namespace Gisha.Glide.Game.AirplaneGeneric
 
         private void FixedUpdate()
         {
-            if (!_freeFallMode)
+            if (!_freeFallMode && _airplane.EnginePushing)
             {
                 _rb.AddRelativeForce(Vector3.forward * Thrust * forceMult, ForceMode.Force);
                 _rb.AddRelativeTorque(new Vector3(turnTorque.x * Pitch,

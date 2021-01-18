@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1078451714}
   - component: {fileID: 1078451716}
   - component: {fileID: 1078451715}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Right Engine Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4823,7 +4823,7 @@ GameObject:
   - component: {fileID: 1484464027}
   - component: {fileID: 1484464029}
   - component: {fileID: 1484464028}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Left Engine Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9634,7 +9634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3473016946460907428}
   - component: {fileID: 1178502959031465809}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Right Air Trail
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -9762,7 +9762,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4220699833999607146}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Effects
   m_TagString: Airplane
   m_Icon: {fileID: 0}
@@ -9799,7 +9799,8 @@ GameObject:
   - component: {fileID: 4220699834052348179}
   - component: {fileID: 4220699834052348183}
   - component: {fileID: 4220699834052348182}
-  m_Layer: 0
+  - component: {fileID: 1487420659}
+  m_Layer: 8
   m_Name: Airplane
   m_TagString: Airplane
   m_Icon: {fileID: 0}
@@ -9835,7 +9836,7 @@ Rigidbody:
   m_AngularDrag: 5
   m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 2
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!114 &4220699834052348183
@@ -9880,6 +9881,23 @@ MonoBehaviour:
   pitch: 0
   yaw: 0
   roll: 0
+--- !u!114 &1487420659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4220699834052348169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6a614bc51acbc0479bbd26e8d35ec63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sendTriggerMessage: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 55
+  skinWidth: 0.1
 --- !u!1 &4220699834439000503
 GameObject:
   m_ObjectHideFlags: 0
@@ -9890,7 +9908,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4220699834439000500}
   - component: {fileID: 4220699834439000501}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Left Engine Trail
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -10024,7 +10042,7 @@ GameObject:
   - component: {fileID: 4220699834861823214}
   - component: {fileID: 4220699834861823203}
   - component: {fileID: 1892474017}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Model
   m_TagString: Airplane
   m_Icon: {fileID: 0}
@@ -10107,8 +10125,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.7152267, y: 0.17000002, z: 2.9504395}
-  m_Center: {x: 0, y: -0.120000005, z: -0.8220215}
+  m_Size: {x: 6.7152267, y: 0.37031168, z: 2.9504395}
+  m_Center: {x: 0, y: -0.019844174, z: -0.8220215}
 --- !u!136 &4220699834861823203
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10119,7 +10137,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.44818094
+  m_Radius: 0.6058815
   m_Height: 7.63
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 1.39}
@@ -10146,7 +10164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4220699834998575192}
   - component: {fileID: 4220699834998575193}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Right Engine Trail
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
@@ -10276,7 +10294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4283896675504666324}
   - component: {fileID: 204770638298219909}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Left Air Trail
   m_TagString: Untagged
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
