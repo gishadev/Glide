@@ -29,12 +29,13 @@ namespace Gisha.Glide.MainMenu.Levels
             LevelsData data = SaveSystem.LoadLevelsData();
             CreateLevelsUIFromScene();
 
+#if UNITY_EDITOR
             if (data.allLevels == null || data.allLevels.Count == 0)
             {
                 ResetLevelsData();
                 return;
             }
-
+#endif
             var keys = new List<LevelCoords>(_levelsUI.Keys);
             for (int i = 0; i < keys.Count; i++)
             {
