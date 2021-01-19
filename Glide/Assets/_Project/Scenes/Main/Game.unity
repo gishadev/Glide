@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.26666668, g: 0.3019608, b: 0.34901962, a: 1}
+  m_FogColor: {r: 0.20683517, g: 0.42372838, b: 0.5283019, a: 0}
   m_FogMode: 1
   m_FogDensity: 0.00035
   m_LinearFogStart: 1500
@@ -5673,7 +5673,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 10000
+  far clip plane: 15000
   field of view: 65
   orthographic: 0
   orthographic size: 5
@@ -5917,7 +5917,7 @@ MonoBehaviour:
     FieldOfView: 65
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 10000
+    FarClipPlane: 15000
     Dutch: 0
     LensShift: {x: 0, y: 0}
   m_Transitions:

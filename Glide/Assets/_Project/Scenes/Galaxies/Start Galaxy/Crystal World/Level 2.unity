@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogColor: {r: 0, g: 0, b: 0, a: 0}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
@@ -1304,6 +1304,18 @@ PrefabInstance:
       propertyPath: boundsParent
       value: 
       objectReference: {fileID: 1839838441}
+    - target: {fileID: 8949291279385105444, guid: 81322f577b013714981aedf597854a58, type: 3}
+      propertyPath: fogColor.r
+      value: 0.3037113
+      objectReference: {fileID: 0}
+    - target: {fileID: 8949291279385105444, guid: 81322f577b013714981aedf597854a58, type: 3}
+      propertyPath: fogColor.g
+      value: 0.7075472
+      objectReference: {fileID: 0}
+    - target: {fileID: 8949291279385105444, guid: 81322f577b013714981aedf597854a58, type: 3}
+      propertyPath: fogColor.b
+      value: 0.70505434
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81322f577b013714981aedf597854a58, type: 3}
 --- !u!1001 &1560477409

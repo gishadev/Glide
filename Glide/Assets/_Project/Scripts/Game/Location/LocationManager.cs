@@ -16,6 +16,8 @@ namespace Gisha.Glide.Game.Location
         [Header("Bounds")]
         [SerializeField] private Material tunnelMaterial = default;
 
+        [Header("Fog")]
+        [SerializeField] private Color fogColor = default;
         public Transform Spawnpoint => spawnpoint;
 
         private void Awake()
@@ -32,6 +34,8 @@ namespace Gisha.Glide.Game.Location
         {
             AirplaneSpawner.Instance.SpawnAirplane(Spawnpoint.position);
             Cursor.lockState = CursorLockMode.Locked;
+
+            UpdateFogColor();
         }
 
         private void OnValidate()
@@ -41,6 +45,10 @@ namespace Gisha.Glide.Game.Location
 
             foreach (Renderer renderer in boundsParent.GetComponentsInChildren<Renderer>())
                 renderer.material = tunnelMaterial;
+
+            UpdateFogColor();
         }
+
+        private void UpdateFogColor() => RenderSettings.fogColor = fogColor;
     }
 }

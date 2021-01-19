@@ -1767,6 +1767,18 @@ PrefabInstance:
       propertyPath: boundsParent
       value: 
       objectReference: {fileID: 1839838441}
+    - target: {fileID: 8949291279385105444, guid: 81322f577b013714981aedf597854a58, type: 3}
+      propertyPath: fogColor.r
+      value: 0.32941177
+      objectReference: {fileID: 0}
+    - target: {fileID: 8949291279385105444, guid: 81322f577b013714981aedf597854a58, type: 3}
+      propertyPath: fogColor.g
+      value: 0.37515023
+      objectReference: {fileID: 0}
+    - target: {fileID: 8949291279385105444, guid: 81322f577b013714981aedf597854a58, type: 3}
+      propertyPath: fogColor.b
+      value: 0.50980395
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81322f577b013714981aedf597854a58, type: 3}
 --- !u!1001 &5584491712473606149
