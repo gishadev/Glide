@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 281697321246497688}
   - component: {fileID: 7337024491287495532}
   - component: {fileID: 2057143040278631811}
+  - component: {fileID: 9164136153713942945}
   m_Layer: 0
   m_Name: Teleporter
   m_TagString: Obstacle
@@ -46,7 +47,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerSignal: {fileID: 1439975203727893006}
-  minDistToRotatateTowardsAirplane: 100
 --- !u!114 &2057143040278631811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +63,20 @@ MonoBehaviour:
   speed: 3
   maxDistFromCenter: 15
   movementDirection: 1
+--- !u!114 &9164136153713942945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622370396559360290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0792e1184419aae449e9aeb29a19daab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationTarget: {fileID: 2243503688750080131}
+  minDistToRotateTowardsAirplane: 250
 --- !u!1 &1981971554217623853
 GameObject:
   m_ObjectHideFlags: 0

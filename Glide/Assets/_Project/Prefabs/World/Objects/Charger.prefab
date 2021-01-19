@@ -560,6 +560,7 @@ GameObject:
   - component: {fileID: 7083214440289590986}
   - component: {fileID: 247630274251858306}
   - component: {fileID: 99951827079662366}
+  - component: {fileID: 7822700132058673107}
   m_Layer: 0
   m_Name: Charger
   m_TagString: Obstacle
@@ -596,7 +597,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   triggerSignal: {fileID: 8241510250769885020}
   chargingGate: {fileID: 2154003863872609901}
-  minDistToRotatateTowardsAirplane: 100
 --- !u!114 &99951827079662366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,6 +613,20 @@ MonoBehaviour:
   speed: 7.5
   maxDistFromCenter: 25
   movementDirection: 1
+--- !u!114 &7822700132058673107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7568143789929301104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0792e1184419aae449e9aeb29a19daab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationTarget: {fileID: 858219864620396192}
+  minDistToRotateTowardsAirplane: 250
 --- !u!1 &8459633994420476061
 GameObject:
   m_ObjectHideFlags: 0
