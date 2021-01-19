@@ -54,7 +54,9 @@ namespace Gisha.Glide.Game.Core
 
             mapAsset.galaxies = galaxies;
 
+#if UNITY_EDITOR
             EditorUtility.SetDirty(mapAsset);
+#endif
         }
     }
 }

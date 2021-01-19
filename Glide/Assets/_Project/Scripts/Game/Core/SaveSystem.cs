@@ -8,7 +8,7 @@ namespace Gisha.Glide.Game.Core
 {
     public static class SaveSystem
     {
-        private static string LevelsDataPath = Application.dataPath + "/_Project/levels.data";
+        private static string LevelsDataPath = Application.persistentDataPath + "/levels.data";
 
         #region LevelsData
         public static void SaveLevelsData(LevelsData levelsData)

@@ -14,9 +14,9 @@ namespace Gisha.Glide.Game.Core
         public const string ModulesDataRelativePath = "ScriptableObjects/ModulesData";
         public const string ModulesUIDataRelativePath = "ScriptableObjects/ModulesUI";
 
-        public static LevelsMap GetLevelsMapAsset() => Resources.Load(LevelsMapRelativePath, typeof(LevelsMap)) as LevelsMap;
-        public static ModulesData GetModulesData() => Resources.Load(ModulesDataRelativePath, typeof(ModulesData)) as ModulesData;
-        public static ModuleUIData GetModuleUIData(string typeName) => Resources.Load($"{ModulesUIDataRelativePath}/{typeName}", typeof(ModuleUIData)) as ModuleUIData;
+        public static LevelsMap GetLevelsMapAsset() => Resources.Load<LevelsMap>(LevelsMapRelativePath);
+        public static ModulesData GetModulesData() => Resources.Load<ModulesData>(ModulesDataRelativePath);
+        public static ModuleUIData GetModuleUIData(string typeName) => Resources.Load<ModuleUIData>($"{ModulesUIDataRelativePath}/{typeName}");
 
         public static string GetScenePathFromCoords(LevelCoords coords)
         {
