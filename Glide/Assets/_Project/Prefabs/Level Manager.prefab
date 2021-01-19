@@ -43,6 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225d513fb7b89e946a0e4bf2faa767e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings: {fileID: 11400000, guid: cf4472500d372e245914e8f012bfcfbc, type: 2}
   spawnpoint: {fileID: 0}
-  tunnelParent: {fileID: 0}
+  boundsParent: {fileID: 0}
+  tunnelMaterial: {fileID: 2100000, guid: f9427041b456ae14f91db7f26e742b2c, type: 2}

@@ -376,12 +376,12 @@ Transform:
   - {fileID: 192601356}
   - {fileID: 1144093728}
   - {fileID: 1690056772}
-  - {fileID: 289015683}
   - {fileID: 1725758160}
+  - {fileID: 289015683}
   - {fileID: 2119314092}
   - {fileID: 737915898}
-  - {fileID: 674532197}
   - {fileID: 3298587792322406492}
+  - {fileID: 674532197}
   m_Father: {fileID: 94118299}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1238,7 +1238,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4325661040393886711, guid: 81322f577b013714981aedf597854a58, type: 3}
       propertyPath: m_Name
-      value: Level Manager
+      value: Location Manager
       objectReference: {fileID: 0}
     - target: {fileID: 7731566945679516046, guid: 81322f577b013714981aedf597854a58, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1300,6 +1300,10 @@ PrefabInstance:
       propertyPath: tunnelMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 674c74c5196dbd840ae14b8a465dac73, type: 2}
+    - target: {fileID: 8949291279385105444, guid: 81322f577b013714981aedf597854a58, type: 3}
+      propertyPath: boundsParent
+      value: 
+      objectReference: {fileID: 1839838441}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81322f577b013714981aedf597854a58, type: 3}
 --- !u!1001 &1560477409

@@ -1580,7 +1580,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4325661040393886711, guid: 81322f577b013714981aedf597854a58, type: 3}
       propertyPath: m_Name
-      value: Level Manager
+      value: Location Manager
       objectReference: {fileID: 0}
     - target: {fileID: 7731566945679516046, guid: 81322f577b013714981aedf597854a58, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1631,17 +1631,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1052105243}
     - target: {fileID: 8949291279385105444, guid: 81322f577b013714981aedf597854a58, type: 3}
-      propertyPath: tunnelParent
+      propertyPath: boundsParent
       value: 
       objectReference: {fileID: 1839838441}
-    - target: {fileID: 8949291279385105444, guid: 81322f577b013714981aedf597854a58, type: 3}
-      propertyPath: settings
-      value: 
-      objectReference: {fileID: 11400000, guid: 37bff21513ca64a418a3eeadf78a3c88, type: 2}
-    - target: {fileID: 8949291279385105444, guid: 81322f577b013714981aedf597854a58, type: 3}
-      propertyPath: tunnelMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: f9427041b456ae14f91db7f26e742b2c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81322f577b013714981aedf597854a58, type: 3}
 --- !u!1001 &1139300441

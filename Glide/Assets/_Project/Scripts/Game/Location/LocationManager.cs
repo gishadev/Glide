@@ -11,9 +11,9 @@ namespace Gisha.Glide.Game.Location
 
         [Header("General")]
         [SerializeField] private Transform spawnpoint = default;
-        [SerializeField] private Transform tunnelParent = default;
+        [SerializeField] private Transform boundsParent = default;
 
-        [Header("Material")]
+        [Header("Bounds")]
         [SerializeField] private Material tunnelMaterial = default;
 
         public Transform Spawnpoint => spawnpoint;
@@ -23,9 +23,9 @@ namespace Gisha.Glide.Game.Location
             Instance = this;
 
             if (spawnpoint == null)
-                Debug.LogError("Spawnpoint is not assigned!");
-            if (tunnelParent == null)
-                Debug.LogError("Tunnel Parent is not assigned!");
+                Debug.LogError("spawnpoint is not assigned");
+            if (boundsParent == null)
+                Debug.LogError("boundsParent is not assigned");
         }
 
         private void Start()
@@ -36,10 +36,10 @@ namespace Gisha.Glide.Game.Location
 
         private void OnValidate()
         {
-            if (spawnpoint == null || tunnelParent == null)
+            if (spawnpoint == null || boundsParent == null)
                 return;
 
-            foreach (Renderer renderer in tunnelParent.GetComponentsInChildren<Renderer>())
+            foreach (Renderer renderer in boundsParent.GetComponentsInChildren<Renderer>())
                 renderer.material = tunnelMaterial;
         }
     }
