@@ -14,6 +14,7 @@ namespace Gisha.Glide.Game.Core
             SceneManager.LoadScene(PathBuilder.GetScenePathFromCoords(CoordsManager.CurrentCoords), LoadSceneMode.Additive);
 
             var data = SaveSystem.LoadLevelsData();
+
             Debug.Log($"<color=green>Level at {coords.DebugText} was loaded! Best score: {data.allLevels[coords].BestScore}</color>");
         }
 

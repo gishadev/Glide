@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gisha.Glide.Game.HUD;
+using UnityEngine;
 
 namespace Gisha.Glide.Game.Core
 {
@@ -26,7 +27,10 @@ namespace Gisha.Glide.Game.Core
             DontDestroyOnLoad(gameObject);
 
             if (Instance == null)
+            {
                 Instance = this;
+                CanvasFader.FullFaded += SceneLoader.LoadNextLevel;
+            }
 
             if (Instance != null && Instance != this)
                 Destroy(gameObject);
@@ -34,8 +38,14 @@ namespace Gisha.Glide.Game.Core
 
         public static void OnPassLevel()
         {
+            Instance.SaveLevelData();
+            CanvasFader.FadeIn();
+        }
+
+        private void SaveLevelData()
+        {
             var data = SaveSystem.LoadLevelsData();
-    
+
             var currentLevel = data.allLevels[CoordsManager.CurrentCoords];
             var nextLevel = data.allLevels[CoordsManager.GetNextCoords()];
 
@@ -55,7 +65,6 @@ namespace Gisha.Glide.Game.Core
                 currentLevel.SetBestScore(ScoreProcessor.Score);
 
             SaveSystem.SaveLevelsData(data);
-            SceneLoader.LoadNextLevel();
         }
     }
 }
