@@ -7,7 +7,7 @@ namespace Gisha.Glide.EditorGeneric
     public class SceneQuickChange
     {
         [MenuItem("Tools/Quick Change: Main Menu")]
-        public static void ChangeToMainMenu() 
+        public static void ChangeToMainMenu()
             => EditorSceneManager.OpenScene("Assets/" + PathBuilder.GetPathToMainScene("MainMenu") + ".unity", OpenSceneMode.Single);
 
         [MenuItem("Tools/Quick Change: Game")]
@@ -16,5 +16,9 @@ namespace Gisha.Glide.EditorGeneric
             EditorSceneManager.OpenScene("Assets/" + PathBuilder.GetPathToMainScene("Game") + ".unity");
             EditorSceneManager.OpenScene("Assets/" + PathBuilder.GetScenePathFromCoords(new LevelCoords(0, 0, 0)) + ".unity", OpenSceneMode.Additive);
         }
+
+        [MenuItem("Tools/Quick Change: Loading")]
+        public static void ChangeToLoading()
+             => EditorSceneManager.OpenScene("Assets/" + PathBuilder.GetPathToMainScene("Loading") + ".unity", OpenSceneMode.Single);
     }
 }
