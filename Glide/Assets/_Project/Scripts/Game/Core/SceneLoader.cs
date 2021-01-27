@@ -1,27 +1,29 @@
-﻿using UnityEngine.SceneManagement;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Gisha.Glide.Game.Core
 {
     public static class SceneLoader
     {
+        public static string CurrentSceneName => SceneManager.GetActiveScene().name;
+
         public static void LoadLevel(LevelCoords coords)
         {
             CoordsManager.SetCoords(coords);
 
-            SceneManager.LoadScene(PathBuilder.GetPathToMainScene("Game"));
-            SceneManager.LoadScene(PathBuilder.GetScenePathFromCoords(CoordsManager.CurrentCoords), LoadSceneMode.Additive);
+            var mainPath = PathBuilder.GetPathToMainScene("Game");
+            var levelPath = PathBuilder.GetScenePathFromCoords(coords);
 
-            var data = SaveSystem.LoadLevelsData();
-
-            Debug.Log($"<color=green>Level at {coords.DebugText} was loaded! Best score: {data.allLevels[coords].BestScore}</color>");
+            LoadingManager.AsyncLoad(mainPath, levelPath);
         }
 
         public static void LoadMainMenu()
         {
             CoordsManager.SetCoords(new LevelCoords(-1, -1, -1));
-            SceneManager.LoadScene(PathBuilder.GetPathToMainScene("MainMenu"), LoadSceneMode.Single);
+
+            var mainPath = PathBuilder.GetPathToMainScene("MainMenu");
+            LoadingManager.AsyncLoad(mainPath);
         }
 
         public static void LoadNextLevel() => LoadLevel(CoordsManager.MoveNext());

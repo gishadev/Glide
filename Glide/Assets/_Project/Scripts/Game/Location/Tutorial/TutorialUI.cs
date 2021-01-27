@@ -20,6 +20,9 @@ namespace Gisha.Glide.Game.Location.Tutorial
 
         private void Update()
         {
+            if (Core.LoadingManager.IsLoading)
+                return;
+
             foreach (var t in _allText)
             {
                 var dist = (t.transform.position - _airplane.position).magnitude;

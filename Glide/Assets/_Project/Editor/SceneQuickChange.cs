@@ -16,9 +16,5 @@ namespace Gisha.Glide.EditorGeneric
             EditorSceneManager.OpenScene("Assets/" + PathBuilder.GetPathToMainScene("Game") + ".unity");
             EditorSceneManager.OpenScene("Assets/" + PathBuilder.GetScenePathFromCoords(new LevelCoords(0, 0, 0)) + ".unity", OpenSceneMode.Additive);
         }
-
-        [MenuItem("Tools/Quick Change: Loading")]
-        public static void ChangeToLoading()
-             => EditorSceneManager.OpenScene("Assets/" + PathBuilder.GetPathToMainScene("Loading") + ".unity", OpenSceneMode.Single);
     }
 }

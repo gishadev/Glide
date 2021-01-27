@@ -1,5 +1,4 @@
 ﻿using Gisha.Glide.Game.AirplaneGeneric;
-using Gisha.Glide.Game.HUD;
 using UnityEngine;
 
 namespace Gisha.Glide.Game.Location
@@ -33,7 +32,6 @@ namespace Gisha.Glide.Game.Location
 
         private void Start()
         {
-            CanvasFader.FadeOut();
             AirplaneSpawner.Instance.SpawnAirplane(Spawnpoint.position);
             Cursor.lockState = CursorLockMode.Locked;
 

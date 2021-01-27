@@ -1,5 +1,4 @@
-﻿using Gisha.Glide.Game.HUD;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gisha.Glide.Game.Core
 {
@@ -18,7 +17,7 @@ namespace Gisha.Glide.Game.Core
         {
             if (Input.GetKeyDown(KeyCode.RightArrow))
                 OnPassLevel();
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) && SceneLoader.CurrentSceneName != "MainMenu")
                 SceneLoader.LoadMainMenu();
         }
 
@@ -27,10 +26,8 @@ namespace Gisha.Glide.Game.Core
             DontDestroyOnLoad(gameObject);
 
             if (Instance == null)
-            {
                 Instance = this;
-                CanvasFader.FullFaded += SceneLoader.LoadNextLevel;
-            }
+
 
             if (Instance != null && Instance != this)
                 Destroy(gameObject);
@@ -39,7 +36,7 @@ namespace Gisha.Glide.Game.Core
         public static void OnPassLevel()
         {
             Instance.SaveLevelData();
-            CanvasFader.FadeIn();
+            SceneLoader.LoadNextLevel();
         }
 
         private void SaveLevelData()

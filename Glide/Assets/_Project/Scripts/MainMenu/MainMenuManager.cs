@@ -1,5 +1,4 @@
-﻿using Gisha.Glide.Game.HUD;
-using Gisha.Glide.MainMenu.Levels;
+﻿using Gisha.Glide.MainMenu.Levels;
 using UnityEngine;
 
 namespace Gisha.Glide.MainMenu
@@ -23,7 +22,6 @@ namespace Gisha.Glide.MainMenu
 
         private void Start()
         {
-            CanvasFader.FadeOut();
             Cursor.lockState = CursorLockMode.None;
         }
     }

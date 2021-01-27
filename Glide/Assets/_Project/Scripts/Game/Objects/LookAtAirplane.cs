@@ -21,6 +21,9 @@ namespace Gisha.Glide.Game.Objects
 
         private void Update()
         {
+            if (Core.LoadingManager.IsLoading)
+                return;
+
             if (!_trigger.IsTriggered && Vector3.Distance(rotationTarget.position, _airplane.transform.position) > minDistToRotateTowardsAirplane)
                 LootAtAirplane();
         }
