@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Gisha.Glide.Utility;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,6 +14,7 @@ namespace Gisha.Glide.Game.Core.SceneLoading
 
         [Header("UI")]
         [SerializeField] private GameObject loadingCanvas = default;
+        [SerializeField] private UIParticleSystem particles = default;
 
         public static bool IsLoading { private set; get; }
 
@@ -63,5 +65,11 @@ namespace Gisha.Glide.Game.Core.SceneLoading
             IsLoading = false;
             _animator.SetTrigger("Fade_Out");
         }
+
+        #region Particles
+        public void PlayParticles() => particles.Play();
+
+        public void StopParticles() => particles.Clear();
+        #endregion
     }
 }
