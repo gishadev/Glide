@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gisha.Glide.Game.Core.SceneLoading;
+using UnityEngine;
 
 namespace Gisha.Glide.Game.Core
 {
@@ -15,6 +16,9 @@ namespace Gisha.Glide.Game.Core
 
         private void Update()
         {
+            if (LoadingManager.IsLoading)
+                return;
+
             if (Input.GetKeyDown(KeyCode.RightArrow))
                 OnPassLevel();
             if (Input.GetKeyDown(KeyCode.Escape) && SceneLoader.CurrentSceneName != "MainMenu")

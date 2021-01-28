@@ -1,36 +1,8 @@
 ﻿using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Gisha.Glide.Game.Core
 {
-    public static class SceneLoader
-    {
-        public static string CurrentSceneName => SceneManager.GetActiveScene().name;
-
-        public static void LoadLevel(LevelCoords coords)
-        {
-            CoordsManager.SetCoords(coords);
-
-            var mainPath = PathBuilder.GetPathToMainScene("Game");
-            var levelPath = PathBuilder.GetScenePathFromCoords(coords);
-
-            LoadingManager.AsyncLoad(mainPath, levelPath);
-        }
-
-        public static void LoadMainMenu()
-        {
-            CoordsManager.SetCoords(new LevelCoords(-1, -1, -1));
-
-            var mainPath = PathBuilder.GetPathToMainScene("MainMenu");
-            LoadingManager.AsyncLoad(mainPath);
-        }
-
-        public static void LoadNextLevel() => LoadLevel(CoordsManager.MoveNext());
-
-        public static void ReloadLevel() => LoadLevel(CoordsManager.CurrentCoords);
-    }
-
     public static class CoordsManager
     {
         public static LevelCoords CurrentCoords { get; private set; }
@@ -67,6 +39,22 @@ namespace Gisha.Glide.Game.Core
         {
             CurrentCoords = GetNextCoords();
             return CurrentCoords;
+        }
+    }
+
+    public struct LevelCoords
+    {
+        public int GalaxyID { private set; get; }
+        public int WorldID { private set; get; }
+        public int LevelID { private set; get; }
+
+        public string DebugText => $"[{GalaxyID},{WorldID},{LevelID}]";
+
+        public LevelCoords(int galaxyID, int worldID, int levelID)
+        {
+            GalaxyID = galaxyID;
+            WorldID = worldID;
+            LevelID = levelID;
         }
     }
 }

@@ -6101,7 +6101,6 @@ GameObject:
   - component: {fileID: 1626397118}
   - component: {fileID: 1626397117}
   - component: {fileID: 1626397116}
-  - component: {fileID: 1626397119}
   m_Layer: 0
   m_Name: Score HUD
   m_TagString: Untagged
@@ -6185,18 +6184,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &1626397119
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1626397114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 788a5fa3b4dc4d74ea516e03c4aad355, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1734594006
 GameObject:
   m_ObjectHideFlags: 0

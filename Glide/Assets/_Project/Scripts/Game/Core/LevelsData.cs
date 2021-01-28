@@ -37,20 +37,4 @@ namespace Gisha.Glide.Game.Core
         Hidden,
         Nonexistent
     }
-
-    public struct LevelCoords
-    {
-        public int GalaxyID { private set; get; }
-        public int WorldID { private set; get; }
-        public int LevelID { private set; get; }
-
-        public string DebugText => $"[{GalaxyID},{WorldID},{LevelID}]";
-
-        public LevelCoords(int galaxyID, int worldID, int levelID)
-        {
-            GalaxyID = galaxyID;
-            WorldID = worldID;
-            LevelID = levelID;
-        }
-    }
 }

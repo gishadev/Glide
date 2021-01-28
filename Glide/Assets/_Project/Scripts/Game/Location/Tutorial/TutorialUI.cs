@@ -1,4 +1,5 @@
 ﻿using Gisha.Glide.Game.AirplaneGeneric;
+using Gisha.Glide.Game.Core.SceneLoading;
 using TMPro;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ namespace Gisha.Glide.Game.Location.Tutorial
 
         private void Update()
         {
-            if (Core.LoadingManager.IsLoading)
+            if (LoadingManager.IsLoading)
                 return;
 
             foreach (var t in _allText)

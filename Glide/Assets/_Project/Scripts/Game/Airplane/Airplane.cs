@@ -1,5 +1,5 @@
 ﻿using Gisha.Glide.Game.AirplaneGeneric.Modules;
-using Gisha.Glide.Game.Core;
+using Gisha.Glide.Game.Core.SceneLoading;
 using Gisha.Glide.Game.Effects;
 using Gisha.Glide.Game.HUD;
 using System;

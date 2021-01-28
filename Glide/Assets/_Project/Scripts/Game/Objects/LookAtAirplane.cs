@@ -1,4 +1,5 @@
 ﻿using Gisha.Glide.Game.AirplaneGeneric;
+using Gisha.Glide.Game.Core.SceneLoading;
 using UnityEngine;
 
 namespace Gisha.Glide.Game.Objects
@@ -21,7 +22,7 @@ namespace Gisha.Glide.Game.Objects
 
         private void Update()
         {
-            if (Core.LoadingManager.IsLoading)
+            if (LoadingManager.IsLoading)
                 return;
 
             if (!_trigger.IsTriggered && Vector3.Distance(rotationTarget.position, _airplane.transform.position) > minDistToRotateTowardsAirplane)

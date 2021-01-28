@@ -1,4 +1,5 @@
 ﻿using Gisha.Glide.Game.Core;
+using Gisha.Glide.Game.Core.SceneLoading;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
