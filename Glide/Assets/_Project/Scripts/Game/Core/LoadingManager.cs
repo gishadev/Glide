@@ -16,9 +16,13 @@ namespace Gisha.Glide.Game.Core
 
         public static bool IsLoading { private set; get; }
 
+        Animator _animator;
+
         private void Awake()
         {
             CreateInstance();
+
+            _animator = GetComponent<Animator>();
         }
 
         private void CreateInstance()
@@ -40,7 +44,7 @@ namespace Gisha.Glide.Game.Core
         private IEnumerator AsyncProgressCoroutine(string mainPath, params string[] additivePathes)
         {
             yield return null;
-            loadingCanvas.SetActive(true);
+            _animator.SetTrigger("Fade_In");
             IsLoading = true;
 
             //--- LOADING ---//
@@ -59,7 +63,7 @@ namespace Gisha.Glide.Game.Core
             yield return new WaitForSeconds(1f);
 
             IsLoading = false;
-            loadingCanvas.SetActive(false);
+            _animator.SetTrigger("Fade_Out");
         }
 
         //private IEnumerator AsyncProgressCoroutine(LevelCoords coords)
