@@ -44,7 +44,6 @@ namespace Gisha.Glide.Utility
             ParticlePool = new Image[(int)(Lifetime * EmissionsPerSecond * 1.1f + 1)];
             for (int i = 0; i < ParticlePool.Length; i++)
             {
-
                 var gameObject = new GameObject("Particle");
                 gameObject.transform.SetParent(transform);
                 gameObject.SetActive(false);
