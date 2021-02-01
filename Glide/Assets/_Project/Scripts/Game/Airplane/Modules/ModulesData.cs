@@ -12,5 +12,11 @@ namespace Gisha.Glide.Game.AirplaneGeneric.Modules
         public float DashDistance => dashDistance;
         public float DashSpeed => dashSpeed;
 
+        [Header("Rocket")]
+        [SerializeField] private GameObject rocketPrefab = default;
+
+        public GameObject RocketPrefab => rocketPrefab;
+
+
     }
 }

@@ -66,4 +66,17 @@ namespace Gisha.Glide.Game.AirplaneGeneric.Modules
         }
     }
     #endregion
+    //---------------------------------------------------------------------------------------------------
+    #region RocketModule: Launch a rocket
+    public class RocketModule : Module
+    {
+        public override void Use(Airplane airplane)
+        {
+            base.Use(airplane);
+
+            var data = GetModulesData();
+            GameObject.Instantiate(data.RocketPrefab, airplane.transform.position, airplane.transform.rotation);
+        }
+    }
+    #endregion
 }

@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33ae4555d6998f740998e3176555c425, type: 3}
-  m_Name: ModulesData
+  m_Script: {fileID: 11500000, guid: 0bbe563b5748fc146a3f1240e3211796, type: 3}
+  m_Name: RocketModule
   m_EditorClassIdentifier: 
-  dashDistance: 900
-  dashSpeed: 1500
-  rocketPrefab: {fileID: 2082800662881841069, guid: cc07f483d58708f48b3cc6e14c038a68, type: 3}
+  iconSprite: {fileID: 21300000, guid: 30f4da60bd88dae429cbd6d20b519538, type: 3}
