@@ -44,8 +44,8 @@ namespace Gisha.Glide.Game.Core.SceneLoading
         private IEnumerator AsyncProgressCoroutine(string mainPath, params string[] additivePathes)
         {
             yield return null;
-            _animator.SetTrigger("Fade_In");
             IsLoading = true;
+            _animator.SetBool("IsFading", IsLoading);
 
             //--- LOADING ---//
             var loadAsyncOperations = new List<AsyncOperation>();
@@ -63,7 +63,7 @@ namespace Gisha.Glide.Game.Core.SceneLoading
             yield return new WaitForSeconds(1f);
 
             IsLoading = false;
-            _animator.SetTrigger("Fade_Out");
+            _animator.SetBool("IsFading", IsLoading);
         }
 
         #region Particles
