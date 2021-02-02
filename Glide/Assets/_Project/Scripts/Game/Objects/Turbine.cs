@@ -9,15 +9,21 @@ namespace Gisha.Glide.Game.Objects
 
         Transform _transform;
 
-        private void Awake()
-        {
-            _transform = transform;
-        }
+        bool _isInitialized = false;
+        Accumulator _accumulator;
 
         private void Update()
         {
-            _transform.Rotate(Vector3.forward * angularSpeed * Time.deltaTime);
+            if (_isInitialized && _accumulator.IsActive)
+                _transform.Rotate(Vector3.forward * angularSpeed * Time.deltaTime);
         }
 
+        public void Initialize(Accumulator accumulator)
+        {
+            _transform = transform;
+            _accumulator = accumulator;
+
+            _isInitialized = true;
+        }
     }
 }
