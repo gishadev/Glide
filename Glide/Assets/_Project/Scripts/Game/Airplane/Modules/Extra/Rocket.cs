@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gisha.Glide.Game.Objects;
+using UnityEngine;
 
 namespace Gisha.Glide.Game.AirplaneGeneric.Modules.Extra
 {
@@ -23,7 +24,12 @@ namespace Gisha.Glide.Game.AirplaneGeneric.Modules.Extra
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.collider.CompareTag("Obstacle"))
+            {
                 Explode();
+
+                if (collision.collider.TryGetComponent(out Accumulator accumulator))
+                    accumulator.Destroy();
+            }
         }
 
         private void Explode()
