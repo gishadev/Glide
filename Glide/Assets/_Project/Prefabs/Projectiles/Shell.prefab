@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -1847220218902989423}
   - component: {fileID: 6508335457960076793}
   - component: {fileID: 6954985708244844119}
-  - component: {fileID: 2197345696296678162}
+  - component: {fileID: 5628896862862644062}
   m_Layer: 10
   m_Name: Shell
   m_TagString: Obstacle
@@ -131,7 +131,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   skinWidth: 0.1
---- !u!114 &2197345696296678162
+--- !u!114 &5628896862862644062
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,11 +140,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2082800662881841069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f933757f6687be489247d327a786a2b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4cd34e747417e4d4396ff13e8de7509f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flyingSpeed: 7000
-  lifeTime: 15
+  flyingSpeed: 8000
+  explosionEffect: {fileID: 433523137354823239, guid: 497490face7c87449b24ee536ffe9c5c, type: 3}
 --- !u!1 &8122434771154251619
 GameObject:
   m_ObjectHideFlags: 0
