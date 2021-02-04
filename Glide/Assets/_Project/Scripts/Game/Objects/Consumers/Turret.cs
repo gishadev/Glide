@@ -2,23 +2,15 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Gisha.Glide.Game.Objects
+namespace Gisha.Glide.Game.Objects.Consumers
 {
-    public class Turret : MonoBehaviour
+    public class Turret : EnergyConsumer
     {
         [Header("General")]
         [SerializeField] private GameObject projectilePrefab = default;
         [SerializeField] private float shootingDelay = default;
 
-        Collider _collider;
-        Transform _transform;
         Airplane _airplane;
-
-        private void Awake()
-        {
-            _collider = GetComponent<Collider>();
-            _transform = transform;
-        }
 
         private void Start()
         {
@@ -28,35 +20,29 @@ namespace Gisha.Glide.Game.Objects
 
         private void Update()
         {
-            LookAtAirplane();
+            if (IsWorking)
+                LookAtAirplane();
         }
 
         private IEnumerator ShootingCoroutine()
         {
             while (true)
             {
-                yield return new WaitForSeconds(shootingDelay);
+                yield return new WaitUntil(() => IsWorking);
+                yield return new WaitForSeconds(shootingDelay);                    
 
                 var layerMask = 1 << LayerMask.NameToLayer("Airplane");
-                if (Physics.Raycast(_transform.position, _transform.forward, out RaycastHit hitInfo, 2500f, layerMask))
+                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, 2500f, layerMask))
                 {
                     if (hitInfo.collider.CompareTag("Airplane"))
                         Shoot();
 
                     Debug.Log(hitInfo.collider.name);
                 }
-
             }
         }
 
-        private void Shoot()
-        {
-             GameObject.Instantiate(projectilePrefab, _transform.position, _transform.rotation);
-        }
-
-        private void LookAtAirplane()
-        {
-            _transform.LookAt(_airplane.transform);
-        }
+        private void Shoot() => Instantiate(projectilePrefab, transform.position, transform.rotation);
+        private void LookAtAirplane() => transform.LookAt(_airplane.transform);
     }
 }

@@ -1,17 +1,18 @@
-﻿using UnityEngine;
+﻿using Gisha.Glide.Game.Objects.Consumers;
+using UnityEngine;
 
 namespace Gisha.Glide.Game.Objects
 {
     public class Accumulator : MonoBehaviour
     {
-        [SerializeField] private Turbine[] turbines = default;
+        [SerializeField] private EnergyConsumer[] consumers = default;
 
         public bool IsActive { get; private set; } = true;
 
         private void Awake()
         {
-            foreach (var turbine in turbines)
-                turbine.Initialize(this);
+            foreach (var energyConsumer in consumers)
+                energyConsumer.Initialize(this);
         }
 
         public void Destroy()
