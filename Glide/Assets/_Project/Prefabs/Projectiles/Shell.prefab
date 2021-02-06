@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2082800662881841069}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children:
   - {fileID: 388867615960613722}
   m_Father: {fileID: 0}
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd34e747417e4d4396ff13e8de7509f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flyingSpeed: 8000
+  flyingSpeed: 9000
   explosionEffect: {fileID: 433523137354823239, guid: 497490face7c87449b24ee536ffe9c5c, type: 3}
 --- !u!1 &8122434771154251619
 GameObject:
@@ -220,13 +220,13 @@ TrailRenderer:
   m_Time: 0.5
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 1.5
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.5465126
+        value: 0.9322281
         inSlope: 0
         outSlope: 0
         tangentMode: 0
