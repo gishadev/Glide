@@ -9,7 +9,7 @@ namespace Gisha.Glide.Game.Objects.Consumers
         bool _isInitialized = false;
         Accumulator _accumulator;
 
-        private void OnEnable()
+        private void Start()
         {
             if (!_isInitialized)
                 Debug.LogError($"<color=yellow>EnergyConsumer: {name}</color> is not initialized!");

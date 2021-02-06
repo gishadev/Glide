@@ -24,6 +24,9 @@ namespace Gisha.Glide.Game.Objects
 
         private void Start()
         {
+            if (maxDistFromCenter == 0f)
+                return;
+
             if (movementDirection == MovementDirection.Horizontal)
                 _direction = Vector3.right;
             if (movementDirection == MovementDirection.Vertical)
@@ -35,6 +38,9 @@ namespace Gisha.Glide.Game.Objects
 
         private void Update()
         {
+            if (maxDistFromCenter == 0f)
+                return;
+
             var oldDir = dynamicTrans.position - _transform.position;
             if (oldDir.magnitude > maxDistFromCenter)
                 SetOppositeDirection(oldDir);
