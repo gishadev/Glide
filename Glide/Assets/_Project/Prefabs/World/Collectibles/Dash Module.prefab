@@ -110,6 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectibleModuleTypeName: DashModule
+  pickupRadius: 55
+  flySpeed: 350
 --- !u!1 &7223896061839919428
 GameObject:
   m_ObjectHideFlags: 0
