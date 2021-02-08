@@ -41,9 +41,9 @@ namespace Gisha.Glide.Game.Objects
             if (maxDistFromCenter == 0f)
                 return;
 
-            var oldDir = dynamicTrans.position - _transform.position;
-            if (oldDir.magnitude > maxDistFromCenter)
-                SetOppositeDirection(oldDir);
+            var distance = (dynamicTrans.position - _transform.position).magnitude;
+            if (distance > maxDistFromCenter)
+                SetOppositeDirection(_direction);            
 
             dynamicTrans.Translate(_direction * speed * Time.deltaTime);
         }
