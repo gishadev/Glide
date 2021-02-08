@@ -29,4 +29,31 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/Galaxies/Start Galaxy/Cube World/Level 1.unity
     guid: 46f01fcbe7388f7498dc8eac81918ec4
+  - enabled: 1
+    path: Assets/_Project/Scenes/Galaxies/Start Galaxy/Cube World/Level 2.unity
+    guid: bb26c3c8d48e15a49aa829fc1879f4f2
+  - enabled: 1
+    path: Assets/_Project/Scenes/Galaxies/Start Galaxy/Cube World/Level 3.unity
+    guid: 6d6bd7220c3d2964cb8af9f17262dc1c
+  - enabled: 1
+    path: Assets/_Project/Scenes/Galaxies/Start Galaxy/Cube World/Level 4.unity
+    guid: 8271b15dd8bdeaa4ab2f2aadacc1eaaf
+  - enabled: 1
+    path: Assets/_Project/Scenes/Galaxies/Start Galaxy/Cube World/Level 5.unity
+    guid: f0bc3202794355d4faf3e2fac322a906
+  - enabled: 1
+    path: Assets/_Project/Scenes/Galaxies/Start Galaxy/Cube World/Level 6.unity
+    guid: 8b06e427c690df341a0214bc2a1dc7f4
+  - enabled: 1
+    path: Assets/_Project/Scenes/Galaxies/Start Galaxy/Cube World/Level 7.unity
+    guid: 2f17793d040475a4d9e7626e99576012
+  - enabled: 1
+    path: Assets/_Project/Scenes/Galaxies/Start Galaxy/Cube World/Level 8.unity
+    guid: e3d90d7220326a645891be03807f52e3
+  - enabled: 1
+    path: Assets/_Project/Scenes/Galaxies/Start Galaxy/Cube World/Level 9.unity
+    guid: 75eb4edd6514bf74e854937ef923c951
+  - enabled: 1
+    path: Assets/_Project/Scenes/Galaxies/Start Galaxy/Cube World/Level 10.unity
+    guid: 1e1ef212901e4344c8100068892465cb
   m_configObjects: {}
