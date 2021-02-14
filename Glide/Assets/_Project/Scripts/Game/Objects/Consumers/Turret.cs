@@ -32,7 +32,7 @@ namespace Gisha.Glide.Game.Objects.Consumers
                 yield return new WaitForSeconds(shootingDelay);                    
 
                 var layerMask = 1 << LayerMask.NameToLayer("Airplane");
-                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, 2500f, layerMask))
+                if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, 10000f, layerMask))
                 {
                     if (hitInfo.collider.CompareTag("Airplane"))
                         Shoot();

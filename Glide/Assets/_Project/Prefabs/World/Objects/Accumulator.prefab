@@ -110,4 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4951b6f3a546d446bd61b565a768238, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  consumers: []
+  consumers:
+  - {fileID: 0}
+  - {fileID: 0}
